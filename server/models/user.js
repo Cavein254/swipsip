@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("../../config/key");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -53,31 +55,29 @@ UserSchema.methods.comparePassword = function (password, cb) {
     }
   });
 };
+//generate token
+UserSchema.methods.generateToken = function (cb) {
+  const user = this;
+
+  const token = jwt.sign(user._id.toHexString(), config.token);
+
+  user.token = token;
+  user.save((err, user) => {
+    if (err) return cb(err);
+    cb(null, user);
+  });
+};
+
+UserSchema.statics.findByToken = function (token, cb) {
+  let user = this;
+
+  jwt.verify(token, config.token, (err, decode) => {
+    user.findOne({ _id: decode, token: token }, (err, user) => {
+      if (err) throw err;
+      cb(null, user);
+    });
+  });
+};
 
 let User = mongoose.model("User", UserSchema);
 module.exports = User;
-
-// let saltFactor = 20;
-// UserSchema.pre("save", (next) => {
-//   let user = this;
-//   if (!user.isModified("password")) return next();
-
-//   bcrypt.genSalt(saltFactor, (err, salt) => {
-//     if (err) return next(err);
-
-//     bcrypt.hash(user.password, salt, (err, hash) => {
-//       if (err) return next(err);
-//       user.password = hash;
-//       next();
-//     });
-//   });
-// });
-// UserSchema.methods.comparePassword = (userPassword, next) => {
-//   bcrypt.compare(userPassword, this.password, (err, isMatch) => {
-//     if (err) return next(err);
-//     next(null, isMatch);
-//   });
-// };
-
-// const User = mongoose.model("User", UserSchema);
-// module.exports = { User };
