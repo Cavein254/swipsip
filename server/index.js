@@ -51,10 +51,11 @@ app.post("/api/user/login", (req, res) => {
         msg: "no user with that email",
       });
     user.comparePassword(req.body.password, (err, isMatch) => {
+      console.log(isMatch);
       if (!isMatch)
         return res.json({
           success: false,
-          msg: "incorrect password",
+          msg: "Error:Incorrect password",
         });
       //generate token
       user.generateToken((err, user) => {

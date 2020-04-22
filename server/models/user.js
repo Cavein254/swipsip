@@ -4,9 +4,10 @@ const jwt = require("jsonwebtoken");
 const config = require("../../config/key");
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     maxlength: 50,
+    unique: 1,
   },
   email: {
     type: String,
@@ -48,11 +49,14 @@ UserSchema.pre("save", function (next) {
 
 UserSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.password, (err, isMatch) => {
-    if (err) return cb(err);
-    else {
-      if (!isMatch) return cb(null, isMatch);
-      return cb(null, this);
+    if (err) {
+      return cb(err);
+    } else {
+      if (!isMatch) {
+        return cb(null, isMatch);
+      }
     }
+    return cb(null, this);
   });
 };
 //generate token
