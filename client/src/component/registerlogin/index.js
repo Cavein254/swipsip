@@ -27,7 +27,7 @@ class RegisterLogin extends Component {
     if (this.isFormValid(this.state)) {
       this.setState({ errors: [] });
       this.props.dispatch(loginUser(userData)).then((response) => {
-        if (response.payload.loginSuccess) {
+        if (response.payload.success) {
           this.props.history.push("/");
         } else {
           this.setState({

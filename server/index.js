@@ -62,7 +62,6 @@ app.post("/api/user/login", (req, res) => {
         res.cookie("x_auth", user.token).status(200).json({
           success: true,
           msg: "logged in",
-          user,
         });
       });
     });
