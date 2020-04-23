@@ -3,7 +3,7 @@ const User = require("../models/customer");
 const auth = (req, res, next) => {
   let token = req.cookies.x_user_auth;
 
-  User.finByToken(token, (err, user) => {
+  User.findByToken(token, (err, user) => {
     if (err) throw err;
     if (!user)
       return res.json({

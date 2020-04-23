@@ -1,7 +1,9 @@
+const path = require("path");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const config = require("../config/key");
 const User = require("./models/customer");
@@ -14,49 +16,20 @@ mongoose
   .then(() => console.log("connected to mongodb"))
   .catch((err) => console.log(err));
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.post("/api/user/register", (req, res) => {
-  const user = new User(req.body);
-  user.save((err, userData) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(userData);
-    res.status(200).send({
-      success: true,
-      payload: user,
-    });
-  });
-});
+app.use("/api/user", require("./routes/user_route"));
 
-app.post("/api/user/login", (req, res) => {
-  User.findOne({ email: req.body.email }, (err, user) => {
-    if (!user)
-      return res.json({
-        success: false,
-        msg: "Error: no user with that email",
-      });
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if (!isMatch) {
-        return res.json({
-          success: false,
-          msg: "Error: Incorrect password",
-        });
-      }
+app.use("iploads", express.static("uploads"));
 
-      //generate jwt token
-      user.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
-        res.cookie("x_user_auth", user.token).status(200).json({
-          success: true,
-          msg: "logged In",
-        });
-      });
-    });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
   });
-});
+}
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
