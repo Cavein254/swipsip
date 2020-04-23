@@ -63,7 +63,9 @@ UserSchema.methods.generateToken = function (cb) {
   const user = this;
 
   const token = jwt.sign(user._id.toHexString(), config.token);
+  let oneHour = moment().add(1, "hour".valueOf());
 
+  user.tokenExp = oneHour;
   user.token = token;
   user.save((err, user) => {
     if (err) return cb(err);

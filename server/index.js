@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const config = require("../config/key");
-const User = require("./models/customer");
 
 mongoose
   .connect(config.mongoURI, {
@@ -21,8 +20,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/user", require("./routes/user_route"));
-
-app.use("iploads", express.static("uploads"));
+app.use("/api/user/payments", require("./hooks/payment/buygoods"));
+app.use("Uploads", express.static("uploads"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

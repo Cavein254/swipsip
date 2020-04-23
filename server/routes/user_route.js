@@ -44,6 +44,7 @@ router.post("/login", (req, res) => {
       //generate jwt token
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
+        res.cookie("x_user_auth", user.tokenExp);
         res.cookie("x_user_auth", user.token).status(200).json({
           success: true,
           msg: "logged In",
@@ -54,17 +55,22 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", auth, (req, res) => {
-  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, doc) => {
-    if (err)
-      return res.json({
-        success: false,
-        err,
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { token: "" },
+    { tokenExp: "" },
+    (err, doc) => {
+      if (err)
+        return res.json({
+          success: false,
+          err,
+        });
+      return res.status(200).send({
+        sucess: true,
+        msg: "successfully logged out",
       });
-    return res.status(200).send({
-      sucess: true,
-      msg: "successfully logged out",
-    });
-  });
+    }
+  );
 });
 
 module.exports = router;
