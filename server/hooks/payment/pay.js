@@ -4,12 +4,11 @@ const parseJson = require("parse-json");
 const paymentRouter = express.Router();
 const config = require("../../../config/key");
 
-paymentRouter.get("/mpesa_auth", (req, res, accessToken) => {
-    // return res.send({access_token:req.access_token})
-    console.log("running function")
+paymentRouter.get("/mpesa_auth",accessToken, (req, res) => {
+    res.status(200).json({access_token:req.access_token})    
 });
 
-function accessToken(req,res) {
+function accessToken(req,res, next) {
   const consumer_key = config.consumerKey;
   const consumer_secret = config.consumerSecret;
   const api_url =
@@ -26,19 +25,19 @@ function accessToken(req,res) {
       },
     },
     (err, response, body) => {
-      if (err || response.statusCode !== 200 ) {
-        res.json({
-            success:false,
-            msg:response.statusMessage,
+      if (err || response.statusCode !== 200) {
+        res.send({
+            status:response.statusCode,
+            msg: response.statusMessage,
             err
         })
       } else {
-          console.log(parseJson(body))
         req.access_token = parseJson(body).access_token
+        next();
+
       }
     }
   );
-//   next();
 }
 
 paymentRouter.get("/test", (req, res) => {
