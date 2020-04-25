@@ -14,6 +14,8 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const user = new User(req.body);
+  res.date_joined = Date.now();
+  console.log(user)
   user.save((err, userData) => {
     if (err) {
       console.log(err);

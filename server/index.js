@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/user", require("./routes/user_route"));
-app.use("/api/user/payments", require("./hooks/payment/pay"));
+// app.use("/api/user/payments", require("./hooks/payment/pay"));
 app.use("Uploads", express.static("uploads"));
 
 if (process.env.NODE_ENV === "production") {
@@ -33,6 +33,5 @@ if (process.env.NODE_ENV === "production") {
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   const host = server.address().address;
-  const port = server.address().port;
   console.log(`server running at port ${port}`);
 });

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const moment = require("moment");
 const config = require("../../config/key");
 
 const UserSchema = new mongoose.Schema({
@@ -21,11 +22,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   date_joined: {
-    type: Date,
+    type: Number,
   },
   role: {
     type: Number,
     default: 0,
+  },
+  isAdmin:{
+    type:Boolean,
+    default:false,
   },
   token: {
     type: String,
@@ -36,6 +41,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", function (next) {
+  this.date_joined = Date.now()
+
   if (!this.isModified("password")) return next();
 
   bcrypt.hash(this.password, 10, (err, passwordHash) => {
@@ -44,6 +51,7 @@ UserSchema.pre("save", function (next) {
     next();
   });
 });
+
 
 UserSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.password, (err, isMatch) => {
