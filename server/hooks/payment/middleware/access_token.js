@@ -1,9 +1,7 @@
 const express = require("express");
 const request = require("request");
-const parseJson = require("parse-json")
-const config = require("../../../../config/key"); 
-
-
+const parseJson = require("parse-json");
+const config = require("../../../../config/key");
 
 const accessToken = (req, res, next) => {
   const consumer_key = config.consumerKey;
@@ -36,4 +34,4 @@ const accessToken = (req, res, next) => {
   );
 };
 
-module.exports = accessToken
+module.exports = { accessToken };

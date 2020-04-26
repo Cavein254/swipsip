@@ -14,11 +14,13 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const user = new User(req.body);
-  res.date_joined = Date.now();
-  console.log(user)
   user.save((err, userData) => {
-    if (err) {
-      console.log(err);
+    if (err){
+      res.send({
+        error_code:err.code,
+        error_message:err.errmsg,
+      })
+      throw err;
     }
     console.log(userData);
     res.status(200).send({

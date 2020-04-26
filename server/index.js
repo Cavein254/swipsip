@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/user", require("./routes/user_route"));
-// app.use("/api/user/payments", require("./hooks/payment/pay"));
+app.use("/api/user/payments", require("./hooks/payment/pay"));
 app.use("Uploads", express.static("uploads"));
 
 if (process.env.NODE_ENV === "production") {
