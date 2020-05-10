@@ -1,12 +1,12 @@
 import React from "react";
-import Login from "./Login";
+import Top from "./top/Top";
 import Navigation from "./NavBar";
 import Search from "./Search";
 
 function Header() {
   return (
     <div>
-      <Login />
+      <Top />
       <Search />
       <Navigation />
     </div>

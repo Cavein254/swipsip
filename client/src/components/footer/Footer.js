@@ -4,7 +4,7 @@ import { Container, Col, Row } from "react-bootstrap";
 const Footer = () => {
   return (
     <div>
-      <Container>
+      <Container className="wrapper">
         <Row>
           <Col>
             <h2>VISIT US</h2>
@@ -24,8 +24,8 @@ const Footer = () => {
           <Col></Col>
         </Row>
       </Container>
-      <div>
-        <p>&Copy; SwitSip Wine Agencies</p>
+      <div className="ending">
+        <p>&copy; SwitSip Wine Agencies</p>
       </div>
     </div>
   );
