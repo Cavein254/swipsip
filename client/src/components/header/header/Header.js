@@ -1,11 +1,13 @@
 import React from "react";
-import Top from "./top/Top";
-import Navigation from "./NavBar";
-import Search from "./Search";
+import Top from "../top/Top";
+import Navigation from "../NavBar";
+import Search from "../Search";
+
+import "./header.scss";
 
 function Header() {
   return (
-    <div>
+    <div className="heading">
       <Top />
       <Search />
       <Navigation />

@@ -1,13 +1,19 @@
 import React from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Image, Form } from "react-bootstrap";
+import styled from "styled-components";
+import Logo from "./imgs/sipwine.png";
 
 const Search = () => {
   return (
     <div>
-      <Container>
+      <Container className="logo">
         <Row>
-          <Col sm={4}>logo</Col>
-          <Col sm={8}>searchbar</Col>
+          <Col sm={4} className="logo-picture">
+            <Image src={Logo} alt="Logo" />
+          </Col>
+          <Col sm={8} className="logo-text">
+            <Form.Control placeholder="Search" />
+          </Col>
         </Row>
       </Container>
     </div>
