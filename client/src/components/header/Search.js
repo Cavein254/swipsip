@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Col, Row, Image, Form } from "react-bootstrap";
-import styled from "styled-components";
 import Logo from "./imgs/sipwine.png";
 
 const Search = () => {
