@@ -10,12 +10,15 @@ const CaureselData = () => {
       <Carousel>
         <Carousel.Item>
           <img className="d-block w-100 h-200" src={Hein} alt="First slide" />
-          <Carousel.Caption></Carousel.Caption>
+          <Carousel.Caption className="caro-text">
+            <h3>FASTEST SALES DELIVERIES AT YOUR DOOR STEP</h3>
+          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100 h-200" src={Jonny} alt="Third slide" />
-
-          <Carousel.Caption></Carousel.Caption>
+          <Carousel.Caption className="caro-text">
+            <h3>FASTEST SALES DELIVERIES AT YOUR DOOR STEP</h3>
+          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -23,8 +26,9 @@ const CaureselData = () => {
             src={Guiness}
             alt="Third slide"
           />
-
-          <Carousel.Caption></Carousel.Caption>
+          <Carousel.Caption className="caro-text">
+            <h3>FASTEST SALES DELIVERIES AT YOUR DOOR STEP</h3>
+          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     </div>
