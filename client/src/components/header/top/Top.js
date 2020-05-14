@@ -1,8 +1,11 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Container, Col, Row, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
+
+import Login from "../../user/Login";
 
 import "./top.scss";
 
@@ -20,12 +23,12 @@ const Top = () => {
             <div className="wrapper">
               <Col sm={3}>
                 <div>
-                  <a href="#">Register</a>
+                  <a href="#">Login</a>
                 </div>
               </Col>
               <Col sm={3}>
                 <div>
-                  <a href="#">Login</a>
+                  <a href="#">Register</a>
                 </div>
               </Col>
             </div>
