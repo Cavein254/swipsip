@@ -13,41 +13,29 @@ import "./top.scss";
 const Top = () => {
   return (
     <div>
-      <Navbar expand="lg" variant="dark" bg="dark">
-        <Container>
-          <Navbar.Brand href="#">
-            <FontAwesomeIcon icon={faGlassCheers} />
-            Swit Sip
-          </Navbar.Brand>
-          <Row>
-            <Col sm={6}></Col>
-            <div className="wrapper">
-              <Router>
-                <Switch>
-                  <Route path="/login" component={Login} />
-                  <Col sm={3}>
-                    <a href={"../../user/Login"}>Login</a>
-                  </Col>
-                  <Col sm={3}>
-                    <a href={"../../user/Register"}>Register</a>
-                  </Col>
-                </Switch>
-              </Router>
-            </div>
-          </Row>
-        </Container>
-      </Navbar>
+      <Router>
+        <Navbar expand="lg" variant="dark" bg="dark">
+          <Container>
+            <Navbar.Brand href="#">
+              <FontAwesomeIcon icon={faGlassCheers} />
+              Swit Sip
+            </Navbar.Brand>
+            <Row>
+              <Col sm={6}></Col>
+              <div className="wrapper">
+                <Col sm={3}>
+                  <Link to="/login">Login</Link>
+                </Col>
+                <Col sm={3}>
+                  <Link to="/register">Register</Link>
+                </Col>
+              </div>
+            </Row>
+          </Container>
+        </Navbar>
+      </Router>
     </div>
   );
 };
 
 export default Top;
-
-{
-  /* <Col sm={3}>
-                  <a href={"../../user/Login"}>Login</a>
-                </Col>
-                <Col sm={3}>
-                  <a href={"../../user/Register"}>Register</a>
-                </Col> */
-}
