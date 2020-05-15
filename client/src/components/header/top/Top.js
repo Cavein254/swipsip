@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
 
 import Login from "../../user/Login";
+import Register from "../../user/Register";
 
 import "./top.scss";
 
@@ -21,16 +22,17 @@ const Top = () => {
           <Row>
             <Col sm={6}></Col>
             <div className="wrapper">
-              <Col sm={3}>
-                <div>
-                  <a href="#">Login</a>
-                </div>
-              </Col>
-              <Col sm={3}>
-                <div>
-                  <a href="#">Register</a>
-                </div>
-              </Col>
+              <Router>
+                <Switch>
+                  <Route path="/login" component={Login} />
+                  <Col sm={3}>
+                    <a href={"../../user/Login"}>Login</a>
+                  </Col>
+                  <Col sm={3}>
+                    <a href={"../../user/Register"}>Register</a>
+                  </Col>
+                </Switch>
+              </Router>
             </div>
           </Row>
         </Container>
@@ -40,3 +42,12 @@ const Top = () => {
 };
 
 export default Top;
+
+{
+  /* <Col sm={3}>
+                  <a href={"../../user/Login"}>Login</a>
+                </Col>
+                <Col sm={3}>
+                  <a href={"../../user/Register"}>Register</a>
+                </Col> */
+}
