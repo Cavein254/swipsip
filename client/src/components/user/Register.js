@@ -1,12 +1,13 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import "./user.scss";
 
 const Register = () => {
   return (
-    <div>
-      <Form>
+    <div className="form-wrapper">
+      <Form ClassName="form-data">
         <Form.Group controlId="formBasicText">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Username</Form.Label>
           <Form.Control type="text" placeholder="username" />
         </Form.Group>
 
@@ -16,11 +17,9 @@ const Register = () => {
         </Form.Group>
 
         <Form.Group controlId="formBasicNumber">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Age</Form.Label>
           <Form.Control type="number" placeholder="Enter Age" />
-          <Form.Text className="text-muted">
-            Please note you have to be over 18 to register
-          </Form.Text>
+          <Form.Text>Please note you have to be over 18 to register</Form.Text>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">

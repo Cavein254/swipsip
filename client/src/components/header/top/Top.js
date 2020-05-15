@@ -5,9 +5,6 @@ import { Container, Col, Row, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
 
-import Login from "../../user/Login";
-import Register from "../../user/Register";
-
 import "./top.scss";
 
 const Top = () => {
