@@ -15,11 +15,11 @@ router.get("/auth", auth, (req, res) => {
 router.post("/register", (req, res) => {
   const user = new User(req.body);
   user.save((err, userData) => {
-    if (err){
+    if (err) {
       res.send({
-        error_code:err.code,
-        error_message:err.errmsg,
-      })
+        error_code: err.code,
+        error_message: err.errmsg,
+      });
       throw err;
     }
     console.log(userData);
@@ -31,17 +31,20 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+  console.log(req.body);
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user)
       return res.json({
         success: false,
         msg: "Error: no user with that email",
+        err,
       });
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
         return res.json({
           success: false,
           msg: "Error: Incorrect password",
+          err,
         });
       }
 
@@ -52,6 +55,7 @@ router.post("/login", (req, res) => {
         res.cookie("x_user_auth", user.token).status(200).json({
           success: true,
           msg: "logged In",
+          user,
         });
       });
     });

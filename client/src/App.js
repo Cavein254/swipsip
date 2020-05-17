@@ -15,8 +15,8 @@ import AddProduct from "./components/admin/AddProduct";
 import AddCompany from "./components/admin/AddCompany";
 class App extends React.Component {
   state = {
-    loggedIn: true,
-    isAdmin: false,
+    loggedIn: "",
+    isAdmin: "",
   };
   render() {
     return (
@@ -32,7 +32,7 @@ class App extends React.Component {
               <Route exact path="/" component={Content} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/user/Profile" component={Profile} />
+              <Route exact path="/user/profile" component={Profile} />
             </Router>
             <Footer />
           </>
