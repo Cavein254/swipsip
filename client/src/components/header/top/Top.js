@@ -17,8 +17,7 @@ const Top = () => {
             Swit Sip
           </Navbar.Brand>
           <Row>
-            <Col sm={6}></Col>
-            <div className="wrapper">
+            <div className="top-wrapper">
               <Col sm={3}>
                 <a href="/login">Login</a>
               </Col>
