@@ -28,9 +28,9 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  isAdmin:{
-    type:Boolean,
-    default:false,
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
   token: {
     type: String,
@@ -41,7 +41,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", function (next) {
-  this.date_joined = Date.now()
+  this.date_joined = Date.now();
 
   if (!this.isModified("password")) return next();
 
@@ -51,7 +51,6 @@ UserSchema.pre("save", function (next) {
     next();
   });
 });
-
 
 UserSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.password, (err, isMatch) => {

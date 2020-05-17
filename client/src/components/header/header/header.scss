@@ -1,0 +1,47 @@
+.heading {
+  background-color: #3a3d41;
+}
+
+.logo {
+  & img {
+    height: 50px;
+  }
+  & input {
+    width: 95%;
+  }
+}
+.logo-text {
+  margin: auto;
+  color: white;
+}
+.logo-picture {
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+}
+.dropdown {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  & button {
+    color: white;
+    outline: none;
+    border: none;
+    border-color: none;
+    background-color: #3a3d41;
+  }
+  & button:hover {
+    background-color: #3a3d41;
+  }
+}
+.dropdown-menu {
+  width: 85vw;
+  background-color: #3a3d41;
+
+  & a {
+    color: #fff;
+  }
+  & a:hover {
+    color: red;
+    background-color: transparent;
+  }
+}

@@ -1,0 +1,14 @@
+.h-200 {
+  height: 60vh;
+  padding-bottom: 10px;
+  & img {
+    background-repeat: repeat;
+    width: auto;
+    height: auto;
+  }
+}
+
+.caro-text {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 1.3em;
+}

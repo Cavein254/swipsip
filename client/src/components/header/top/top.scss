@@ -1,0 +1,14 @@
+.top-wrapper {
+  min-width: 350px;
+  margin: 0 0.95vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  a {
+    color: #fff;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #001f3f;
+  }
+}

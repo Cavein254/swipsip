@@ -2,3 +2,4 @@ node_modules
 /.gtm/
 yarn.lock
 *.log
+node_modules
