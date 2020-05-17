@@ -7,7 +7,7 @@ import ViewUsers from "./ViewUsers";
 import AddUser from "./AddUser";
 import Transactions from "./Transactions";
 import Orders from "./Orders";
-import Header from "./Header";
+import AdminHeader from "./AdminHeader";
 
 import "./Admin.scss";
 
@@ -15,9 +15,9 @@ class Admin extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <AdminHeader />
         <Router>
-          <Route exact path="/" component={Header} />
+          <Route exact path="/" component={AdminHeader} />
           <Route exact path="/adduser" component={AddUser} />
           <Route exact path="/viewusers" component={ViewUsers} />
           <Route exact path="/transactions" component={Transactions} />

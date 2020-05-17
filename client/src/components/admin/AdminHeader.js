@@ -3,7 +3,7 @@ import { Container, Col, Row, Navbar, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlassCheers, faLock } from "@fortawesome/free-solid-svg-icons";
 
-const Header = () => {
+const AdminHeader = () => {
   return (
     <div>
       <Navbar expand="lg" variant="dark" bg="dark" className="admintop">
@@ -30,4 +30,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AdminHeader;

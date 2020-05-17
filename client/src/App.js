@@ -10,6 +10,8 @@ import Profile from "./components/user/Profile";
 
 import Admin from "./components/admin/Admin";
 
+import AddUser from "./components/admin/AddUser";
+import AddProduct from "./components/admin/AddProduct";
 class App extends React.Component {
   state = {
     isAdmin: true,
@@ -17,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {this.state.isAdmin ? (
+        {/* {this.state.isAdmin ? (
           <Router>
             <Route exact path="/user/admin" component={Admin} />
           </Router>
@@ -32,7 +34,14 @@ class App extends React.Component {
             </Router>
             <Footer />
           </>
-        )}
+        )} */}
+        <Router>
+          <Header />
+          <Route exact path="/" component={Content} />
+          <Route exact path="/user/admin" component={Admin} />
+          <Route exact path="/user/admin/adduser" component={AddUser} />
+          <Route exact path="/user/admin/addProduct" component={AddProduct} />
+        </Router>
       </div>
     );
   }
