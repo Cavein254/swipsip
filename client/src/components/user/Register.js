@@ -1,4 +1,5 @@
 import React from "react";
+import Axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
 
@@ -24,7 +25,7 @@ class Register extends React.Component {
       password1: this.state.password1,
       age: this.state.age,
     };
-    Axios.post("/api/user/login", dataToSubmit).then(
+    Axios.post("http://localhost:5000/api/user/register", dataToSubmit).then(
       (response) => response.data
     );
   };
@@ -38,7 +39,7 @@ class Register extends React.Component {
               type="text"
               placeholder="username"
               name="username"
-              onChange={handleOnChange}
+              onChange={this.handleOnChange}
             />
           </Form.Group>
 
@@ -48,7 +49,7 @@ class Register extends React.Component {
               type="email"
               placeholder="Enter email"
               name="email"
-              onChange={handleOnChange}
+              onChange={this.handleOnChange}
             />
           </Form.Group>
 
@@ -58,7 +59,7 @@ class Register extends React.Component {
               type="number"
               placeholder="Enter Age"
               name="age"
-              onChange={handleOnChange}
+              onChange={this.handleOnChange}
             />
             <Form.Text>
               Please note you have to be over 18 to register
@@ -71,7 +72,7 @@ class Register extends React.Component {
               type="password"
               placeholder="Password"
               name="password"
-              onChange={handleOnChange}
+              onChange={this.handleOnChange}
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
@@ -80,10 +81,10 @@ class Register extends React.Component {
               type="password"
               placeholder="Confirm Password"
               name="password1"
-              onChange={handleOnChange}
+              onChange={this.handleOnChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleOnSubmit}>
+          <Button variant="primary" type="submit" onClick={this.handleOnSubmit}>
             Submit
           </Button>
         </Form>

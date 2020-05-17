@@ -23,9 +23,10 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
-    Axios.post("/api/user/login", dataToSubmit).then(
-      (response) => response.data
-    );
+    Axios.post(
+      "http://localhost:5000/api/user/login",
+      dataToSubmit
+    ).then((response) => console.log(response.data));
   };
   render() {
     return (
