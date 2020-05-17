@@ -7,6 +7,7 @@ const AddProduct = () => {
       <Form>
         <div className="mb-3">
           <Form.File id="formcheck-api-custom" custom>
+            <h2 ClassName="formheader">Add Product</h2>
             <Form.File.Input isValid />
             <Form.File.Label data-browse="Upload">
               Choose Picture

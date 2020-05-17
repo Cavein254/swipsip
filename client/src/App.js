@@ -12,6 +12,7 @@ import Admin from "./components/admin/Admin";
 
 import AddUser from "./components/admin/AddUser";
 import AddProduct from "./components/admin/AddProduct";
+import AddCompany from "./components/admin/AddCompany";
 class App extends React.Component {
   state = {
     isAdmin: true,
@@ -40,7 +41,8 @@ class App extends React.Component {
           <Route exact path="/" component={Content} />
           <Route exact path="/user/admin" component={Admin} />
           <Route exact path="/user/admin/adduser" component={AddUser} />
-          <Route exact path="/user/admin/addProduct" component={AddProduct} />
+          <Route exact path="/user/admin/addproduct" component={AddProduct} />
+          <Route exact path="/user/admin/addcompany" component={AddCompany} />
         </Router>
       </div>
     );

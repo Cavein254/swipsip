@@ -5,6 +5,7 @@ const AddUser = () => {
   return (
     <div className="form-wrapper">
       <Form ClassName="form-data">
+        <h2 ClassName="formheader">Add User</h2>
         <Form.Group controlId="formBasicText">
           <Form.Label>Username</Form.Label>
           <Form.Control type="text" placeholder="username" />
