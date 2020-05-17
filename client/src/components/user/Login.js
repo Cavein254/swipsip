@@ -1,4 +1,5 @@
 import React from "react";
+import Axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
 
@@ -6,7 +7,7 @@ class Login extends React.Component {
   state = {
     email: "",
     password: "",
-    errors: [1, 2, 4, 5],
+    errors: [],
   };
 
   isFormValid = ({ email, password }) => email && password;
@@ -22,6 +23,9 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
+    Axios.post("/api/user/login", dataToSubmit).then(
+      (response) => response.data
+    );
   };
   render() {
     return (
@@ -35,7 +39,7 @@ class Login extends React.Component {
               value={this.state.email}
               name="email"
               onChange={this.handleOnChange}
-              Required
+              required
             />
             <Form.Text>
               We'll never share your email with anyone else.
@@ -50,7 +54,7 @@ class Login extends React.Component {
               value={this.state.password}
               name="password"
               onChange={this.handleOnChange}
-              Required
+              required
             />
           </Form.Group>
           <Button variant="primary" type="submit" onClick={this.handleOnSubmit}>
