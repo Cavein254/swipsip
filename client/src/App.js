@@ -6,19 +6,36 @@ import Content from "./components/content/Content";
 import Footer from "./components/footer/Footer";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
+import Profile from "./components/user/Profile";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Router>
-        <Route exact path="/" component={Content} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Router>
-      <Footer />
-    </div>
-  );
+import Admin from "./components/admin/Admin";
+
+class App extends React.Component {
+  state = {
+    isAdmin: true,
+  };
+  render() {
+    return (
+      <div className="App">
+        {this.state.isAdmin ? (
+          <Router>
+            <Route exact path="/user/admin" component={Admin} />
+          </Router>
+        ) : (
+          <>
+            <Header />
+            <Router>
+              <Route exact path="/" component={Content} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/user/Profile" component={Profile} />
+            </Router>
+            <Footer />
+          </>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;

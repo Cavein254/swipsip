@@ -10,34 +10,34 @@ const Footer = () => {
       <div className="wrapper">
         <Container>
           <Row>
-            <Col sm={2}>
+            <Col sm={2} className="item">
               <h4>VISIT US</h4>
               <p>Switsip Wine & Spirits</p>
               <p>Kasarani Seasons</p>
               <p>info@switsip.co.ke</p>
             </Col>
-            <Col sm={2}>
+            <Col sm={2} className="item">
               <h4>HOURS OF OPERATIONS</h4>
               <p>Mon-Sun</p>
               <p>8:00 am - 11:00pm</p>
             </Col>
-            <Col sm={2}>
+            <Col sm={2} className="item">
               <h4>COMPANY</h4>
               <p>
                 <a href="#">About Us</a>
               </p>
             </Col>
-            <Col sm={2}>
+            <Col sm={2} className="item">
               <h4>SOCIAL</h4>
               <p>
                 <FontAwesomeIcon icon={faFacebook} /> Twitter
               </p>
               <p></p>
             </Col>
-            <Col sm={2}>
+            <Col sm={2} className="item">
               <h4>LEGAL</h4>
             </Col>
-            <Col sm={2}>
+            <Col sm={2} className="item">
               <h4>BLOG</h4>
             </Col>
           </Row>

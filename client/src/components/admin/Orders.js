@@ -1,7 +1,7 @@
 import React from "react";
 
-const ViewUsers = () => {
+const Orders = () => {
   return <div></div>;
 };
 
-export default ViewUsers;
+export default Orders;
