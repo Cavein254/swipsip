@@ -15,12 +15,13 @@ import AddProduct from "./components/admin/AddProduct";
 import AddCompany from "./components/admin/AddCompany";
 class App extends React.Component {
   state = {
-    isAdmin: true,
+    loggedIn: true,
+    isAdmin: false,
   };
   render() {
     return (
       <div className="App">
-        {/* {this.state.isAdmin ? (
+        {this.state.isAdmin ? (
           <Router>
             <Route exact path="/user/admin" component={Admin} />
           </Router>
@@ -35,15 +36,15 @@ class App extends React.Component {
             </Router>
             <Footer />
           </>
-        )} */}
-        <Router>
+        )}
+        {/* <Router>
           <Header />
           <Route exact path="/" component={Content} />
           <Route exact path="/user/admin" component={Admin} />
           <Route exact path="/user/admin/adduser" component={AddUser} />
           <Route exact path="/user/admin/addproduct" component={AddProduct} />
           <Route exact path="/user/admin/addcompany" component={AddCompany} />
-        </Router>
+        </Router> */}
       </div>
     );
   }

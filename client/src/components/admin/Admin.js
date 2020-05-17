@@ -45,7 +45,7 @@ class Admin extends React.Component {
                   <a href="/user/admin/viewusers">View Users</a>
                 </li>
                 <li>
-                  <a href="/user/admin/viewproducts">View Products</a>
+                  <a href="/user/admin/products">View Products</a>
                 </li>
                 <li>
                   <a href="/user/admin/transactions">View Transactions</a>
