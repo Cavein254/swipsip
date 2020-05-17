@@ -65,7 +65,8 @@ class Login extends React.Component {
     // console.log(this.state);
     return (
       <div className="Container form-data">
-        {this.adminRedirect}
+        {this.adminRedirect()}
+        {this.loggedInUser()}
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
