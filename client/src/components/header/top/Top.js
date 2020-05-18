@@ -19,10 +19,10 @@ const Top = () => {
           <Row>
             <div className="top-wrapper">
               <Col sm={3}>
-                <a href="/login">Login</a>
+                <a href="/user/login">Login</a>
               </Col>
               <Col sm={3}>
-                <a href="register">Register</a>
+                <a href="/user/register">Register</a>
               </Col>
             </div>
           </Row>

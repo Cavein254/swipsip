@@ -24,6 +24,9 @@ const UserSchema = new mongoose.Schema({
   date_joined: {
     type: Number,
   },
+  age: {
+    type: Number,
+  },
   role: {
     type: Number,
     default: 0,

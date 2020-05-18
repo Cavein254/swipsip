@@ -1,5 +1,7 @@
 import React from "react";
 import Axios from "axios";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/User_actions";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
 
@@ -7,17 +9,22 @@ class Register extends React.Component {
   state = {
     username: "",
     email: "",
-    age: "",
+    age: 0,
     password: "",
     password1: "",
+    errors: [],
+    success: "",
+    payload: {},
   };
   handleOnChange = (e) => {
     this.setState({
       [e.target.name]: [e.target.value],
     });
   };
+
   handleOnSubmit = (e) => {
     e.preventDefault();
+
     let dataToSubmit = {
       email: this.state.email,
       username: this.state.username,
@@ -25,9 +32,20 @@ class Register extends React.Component {
       password1: this.state.password1,
       age: this.state.age,
     };
-    Axios.post("http://localhost:5000/api/user/register", dataToSubmit).then(
-      (response) => response.data
-    );
+
+    this.props.dispatch(registerUser(dataToSubmit)).then((response) => {
+      if (response.payload.success) {
+        this.setState({
+          success: response.payload.success,
+          payload: response.payload,
+        });
+      } else {
+        this.setState({
+          success: response.payload.success,
+          errors: this.state.errors.concat(response.payload.msg),
+        });
+      }
+    });
   };
   render() {
     return (
@@ -88,9 +106,17 @@ class Register extends React.Component {
             Submit
           </Button>
         </Form>
+        {this.state.errors.map((err, i) => {
+          return <h2 key={i}>{err}</h2>;
+        })}
       </div>
     );
   }
 }
 
-export default Register;
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+  };
+}
+export default connect(mapStateToProps)(Register);
