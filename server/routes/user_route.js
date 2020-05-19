@@ -35,12 +35,14 @@ router.post("/addcompany", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const data = req.body;
-  console.log("old data", data);
+  //.toString() fixes errors generated when submiting data
+  // mongoose  is unable to cast email:['test@test.com']
+  // to email:'test@test.com'
   const userData = {
-    username: data.username,
-    email: data.email,
-    password: data.password,
-    age: data.age,
+    username: data.username.toString(),
+    email: data.email.toString(),
+    password: data.password.toString(),
+    age: data.age.toString(),
     isAdmin: `${data.isAdmin == undefined ? false : true}`,
   };
   console.log("new data", userData);
