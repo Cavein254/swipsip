@@ -56,11 +56,11 @@ router.post("/register", (req, res) => {
   } else {
     user.save((err, user) => {
       if (err) {
-        console.log("registration failure");
+        let message = "[User registration failed] ";
         res.send({
           success: false,
           error_code: err.code,
-          error_message: err.errmsg,
+          msg: message.concat(err.errmsg),
         });
       } else {
         console.log("registartion success");
@@ -106,6 +106,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", auth, (req, res) => {
+  console.log("-----logout route-----");
   User.findOneAndUpdate(
     { _id: req.user._id },
     { token: "" },

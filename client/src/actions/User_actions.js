@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { LOGIN_USER, REGISTER_USER } from "./Types";
+import { LOGIN_USER, REGISTER_USER, LOGOUT_USER } from "./Types";
 
 export function loginUser(dataToSubmit) {
   const request = axios
@@ -14,23 +14,23 @@ export function loginUser(dataToSubmit) {
 }
 
 export function registerUser(dataToSubmit) {
-  console.log(dataToSubmit);
-  // const request = axios
-  //   .post("http://localhost:5000/api/user/register", dataToSubmit)
-  //   .then((response) => response.data);
-
-  const request = fetch("http://localhost:5000/api/user/register", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(dataToSubmit),
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(response.data));
+  const request = axios
+    .post("http://localhost:5000/api/user/register", dataToSubmit)
+    .then((response) => response.data);
 
   return {
     type: REGISTER_USER,
+    payload: request,
+  };
+}
+
+export function logoutUser() {
+  const request = axios
+    .get("http://localhost:5000/api/user/logout")
+    .then((response) => response.data);
+
+  return {
+    type: LOGOUT_USER,
     payload: request,
   };
 }

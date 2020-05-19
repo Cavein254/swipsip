@@ -24,6 +24,9 @@ const Top = () => {
               <Col sm={3}>
                 <a href="/user/register">Register</a>
               </Col>
+              <Col sm={3}>
+                <a href="/user/logout">Logout</a>
+              </Col>
             </div>
           </Row>
         </Container>

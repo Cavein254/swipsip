@@ -11,7 +11,7 @@ class Login extends React.Component {
     email: "",
     password: "",
     payload: "",
-    errors: "",
+    errors: [],
     success: "",
   };
 
@@ -37,7 +37,7 @@ class Login extends React.Component {
       } else {
         this.setState({
           success: response.payload.success,
-          errors: response.payload.msg,
+          errors: this.state.errors.concat(response.payload.msg),
         });
       }
     });
@@ -86,7 +86,15 @@ class Login extends React.Component {
             Submit
           </Button>
         </Form>
-        <h5>{this.state.errors}</h5>
+        <code>
+          {this.state.errors.map((err, i) => {
+            return (
+              <p>
+                <span key={i}>{err}</span>
+              </p>
+            );
+          })}
+        </code>
       </div>
     );
   }
