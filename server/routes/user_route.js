@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/customer");
+const Company = require("../models/company");
 const { auth } = require("../middleware/auth");
 
 router.get("/auth", auth, (req, res) => {
@@ -12,40 +13,63 @@ router.get("/auth", auth, (req, res) => {
   });
 });
 
+router.post("/addcompany", auth, (req, res) => {
+  const data = req.body;
+  const company = new Company({ company_name: data.company_name });
+
+  company.save((err, company) => {
+    if (err) {
+      res.send({
+        success: false,
+        error_code: err.code,
+        error_message: err.errmsg,
+      });
+    }
+    res.status(200).send({
+      success: true,
+      msg: "company successfully added",
+      Company,
+    });
+  });
+});
+
 router.post("/register", (req, res) => {
   const data = req.body;
-  const user = new User({
-    username:data.username,
-    email:data.email,
-    password:data.password,
-    age:data.age,
-  });
+  console.log("old data", data);
+  const userData = {
+    username: data.username,
+    email: data.email,
+    password: data.password,
+    age: data.age,
+    isAdmin: `${data.isAdmin == undefined ? false : true}`,
+  };
+  console.log("new data", userData);
+  const user = new User(userData);
 
   if (+user.age < 18 || +user.age >= 100) {
     res.send({
-      success:false,
-      msg:"Unappropriate age limit",
-    })
+      success: false,
+      msg: "Unappropriate age limit",
+    });
   } else {
-    user.save((err, user)=> {
-      if(err){
-        console.log(err)
+    user.save((err, user) => {
+      if (err) {
+        console.log("registration failure");
         res.send({
-          error_code:err.code,
-          error_message: err.errmsg
-        })
+          success: false,
+          error_code: err.code,
+          error_message: err.errmsg,
+        });
+      } else {
+        console.log("registartion success");
+        res.status(200).send({
+          success: true,
+          msg: "successfully registered user",
+        });
       }
-      console.log("registering user")
-      res.status(200).send({
-        success:true,
-        msg:"Registration successful",
-      })
-    })
+    });
   }
-
 });
-
-
 
 router.post("/login", (req, res) => {
   console.log(req.body);

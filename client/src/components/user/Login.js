@@ -46,13 +46,12 @@ class Login extends React.Component {
   loggedInUser = () => {
     if (this.state.success) {
       if (this.state.payload.user.isAdmin) {
-        return <Redirect to="/user/admin" />;
+        return <Redirect to="/user/admin" state={this.state} />;
       }
       return <Redirect to="/user/profile" />;
     }
   };
   render() {
-    console.log(this.state);
     return (
       <div className="Container form-data">
         {this.loggedInUser()}

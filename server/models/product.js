@@ -8,6 +8,7 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       maxlength: 50,
       unique: 1,
+      minlength: 4,
     },
     pictureUrl: {
       type: String,

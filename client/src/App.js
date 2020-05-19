@@ -14,29 +14,20 @@ import AddUser from "./components/admin/AddUser";
 import AddProduct from "./components/admin/AddProduct";
 import AddCompany from "./components/admin/AddCompany";
 class App extends React.Component {
-  state = {
-    loggedIn: "",
-    isAdmin: "",
-  };
   render() {
     return (
       <div className="App">
-        {this.state.isAdmin ? (
+        <>
+          <Header />
           <Router>
             <Route exact path="/user/admin" component={Admin} />
+            <Route exact path="/" component={Content} />
+            <Route exact path="/user/login" component={Login} />
+            <Route exact path="/user/register" component={Register} />
+            <Route exact path="/user/profile" component={Profile} />
           </Router>
-        ) : (
-          <>
-            <Header />
-            <Router>
-              <Route exact path="/" component={Content} />
-              <Route exact path="/user/login" component={Login} />
-              <Route exact path="/user/register" component={Register} />
-              <Route exact path="/user/profile" component={Profile} />
-            </Router>
-            <Footer />
-          </>
-        )}
+          <Footer />
+        </>
         {/* <Router>
           <Header />
           <Route exact path="/" component={Content} />

@@ -14,9 +14,20 @@ export function loginUser(dataToSubmit) {
 }
 
 export function registerUser(dataToSubmit) {
-  const request = axios
-    .post("http://localhost:5000/api/user/register", dataToSubmit)
-    .then((response) => response.data);
+  console.log(dataToSubmit);
+  // const request = axios
+  //   .post("http://localhost:5000/api/user/register", dataToSubmit)
+  //   .then((response) => response.data);
+
+  const request = fetch("http://localhost:5000/api/user/register", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(dataToSubmit),
+  })
+    .then((response) => response.json())
+    .then((response) => console.log(response.data));
 
   return {
     type: REGISTER_USER,

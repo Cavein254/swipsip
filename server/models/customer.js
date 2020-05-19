@@ -51,8 +51,7 @@ const UserSchema = new mongoose.Schema(
 
 UserSchema.pre("save", function (next) {
   const user = this;
-  this.date_joined = Date.now();
-  this.age = +this.age;
+  user.age = +this.age;
 
   console.log(this.password);
 
