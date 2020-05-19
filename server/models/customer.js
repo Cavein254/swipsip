@@ -4,23 +4,24 @@ const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const config = require("../../config/key");
 
+const saltRounds = 10;
+
 const UserSchema = new mongoose.Schema({
-  
   username: {
     type: String,
     maxlength: 10,
     unique: true,
-    required:true,
+    required: true,
   },
   email: {
     type: String,
     trim: true,
     unique: true,
-    required:true,
+    required: true,
   },
   password: {
     type: String,
-    required:true,
+    required: true,
   },
   badge: {
     type: String,
@@ -30,6 +31,7 @@ const UserSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
+    default: 18,
   },
   role: {
     type: Number,
@@ -48,16 +50,20 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", function (next) {
+  const user = this;
   this.date_joined = Date.now();
   this.age = +this.age;
 
+  console.log(this.password);
+
   if (!this.isModified("password")) return next();
 
-  bcrypt.hash(this.password, 10, function(err, passwordHash){
+  bcrypt.hash(this.password, 10, function (err, passwordHash) {
     if (err) return next(err, { error: "Failed to hash password" });
-    this.password = passwordHash;
+    user.password = passwordHash;
     next();
   });
+  // next();
 });
 
 UserSchema.methods.comparePassword = function (password, cb) {

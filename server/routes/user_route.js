@@ -14,14 +14,13 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const data = req.body;
-  console.log("--------------------register--------------------")
-  console.log('user email',data)
   const user = new User({
     username:data.username,
     email:data.email,
     password:data.password,
     age:data.age,
   });
+
   if (+user.age < 18 || +user.age >= 100) {
     res.send({
       success:false,
@@ -40,26 +39,10 @@ router.post("/register", (req, res) => {
       res.status(200).send({
         success:true,
         msg:"Registration successful",
-        user
       })
     })
   }
 
-  // const user = new User(req.body);
-  // user.save((err, userData) => {
-  //   if (err) {
-  //     res.send({
-  //       error_code: err.code,
-  //       error_message: err.errmsg,
-  //     });
-  //     // throw err;
-  //   }
-  //   console.log('userdata',userData);
-  //   res.status(200).send({
-  //     success: true, 
-  //     msg: "Registration successful",
-  //   });
-  // });
 });
 
 

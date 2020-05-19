@@ -6,4 +6,8 @@ module.exports = {
   consumerSecret: "qgiiFCOEzxGmrMC5",
   CallBackURL: "https://85d95c05.ngrok.io/api/user/payments",
   PhoneNumber: "254712632223",
+  salt:'a775e088f1a6f0a67908f0cb62f98d7b2a3b9800ec5c51b042c01f8e1894ec85'
 };
+
+// salt generated with
+// crypto.randomBytes(32).toString('hex')
