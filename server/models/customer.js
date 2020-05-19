@@ -9,15 +9,18 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     maxlength: 10,
-    unique: 1,
+    unique: true,
+    required:true,
   },
   email: {
     type: String,
     trim: true,
-    unique: 1,
+    unique: true,
+    required:true,
   },
   password: {
     type: String,
+    required:true,
   },
   badge: {
     type: String,
@@ -26,7 +29,7 @@ const UserSchema = new mongoose.Schema({
     type: Number,
   },
   age: {
-    type: String,
+    type: Number,
   },
   role: {
     type: Number,
@@ -46,6 +49,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre("save", function (next) {
   this.date_joined = Date.now();
+  this.age = +this.age;
 
   if (!this.isModified("password")) return next();
 

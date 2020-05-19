@@ -22,21 +22,28 @@ router.post("/register", (req, res) => {
     password:data.password,
     age:data.age,
   });
-  user.save((err, user)=> {
-    if(err){
-      console.log(err)
-      res.send({
-        error_code:err.code,
-        error_message: err.errmsg
-      })
-    }
-    console.log("registering user")
-    res.status(200).send({
-      success:true,
-      msg:"Registration successful",
-      user
+  if (+user.age < 18 || +user.age >= 100) {
+    res.send({
+      success:false,
+      msg:"Unappropriate age limit",
     })
-  })
+  } else {
+    user.save((err, user)=> {
+      if(err){
+        console.log(err)
+        res.send({
+          error_code:err.code,
+          error_message: err.errmsg
+        })
+      }
+      console.log("registering user")
+      res.status(200).send({
+        success:true,
+        msg:"Registration successful",
+        user
+      })
+    })
+  }
 
   // const user = new User(req.body);
   // user.save((err, userData) => {
