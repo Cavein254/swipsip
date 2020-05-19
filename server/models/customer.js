@@ -6,48 +6,48 @@ const config = require("../../config/key");
 
 const saltRounds = 10;
 
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    maxlength: 10,
-    unique: true,
-    required: true,
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      maxlength: 10,
+      unique: true,
+      required: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    badge: {
+      type: String,
+    },
+    age: {
+      type: Number,
+      default: 18,
+    },
+    role: {
+      type: Number,
+      default: 0,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    token: {
+      type: String,
+    },
+    tokenExp: {
+      type: Number,
+    },
   },
-  email: {
-    type: String,
-    trim: true,
-    unique: true,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  badge: {
-    type: String,
-  },
-  date_joined: {
-    type: Number,
-  },
-  age: {
-    type: Number,
-    default: 18,
-  },
-  role: {
-    type: Number,
-    default: 0,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  token: {
-    type: String,
-  },
-  tokenExp: {
-    type: Number,
-  },
-});
+  { timestamps: true }
+);
 
 UserSchema.pre("save", function (next) {
   const user = this;
