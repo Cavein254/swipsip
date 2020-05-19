@@ -14,12 +14,13 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const data = req.body;
-  console.log(data.email)
+  console.log("--------------------register--------------------")
+  console.log('user email',data)
   const user = new User({
     username:data.username,
     email:data.email,
     password:data.password,
-    age:+data.age,
+    age:data.age,
   });
   user.save((err, user)=> {
     if(err){
@@ -28,13 +29,13 @@ router.post("/register", (req, res) => {
         error_code:err.code,
         error_message: err.errmsg
       })
-    }else {
-      console.log("registration successful")
-      res.status(200).send({
-        success:true,
-        msg:"registration failed"
-      })
     }
+    console.log("registering user")
+    res.status(200).send({
+      success:true,
+      msg:"Registration successful",
+      user
+    })
   })
 
   // const user = new User(req.body);

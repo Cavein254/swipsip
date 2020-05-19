@@ -49,7 +49,7 @@ UserSchema.pre("save", function (next) {
 
   if (!this.isModified("password")) return next();
 
-  bcrypt.hash(this.password, 10, (err, passwordHash) => {
+  bcrypt.hash(this.password, 10, function(err, passwordHash){
     if (err) return next(err, { error: "Failed to hash password" });
     this.password = passwordHash;
     next();
