@@ -63,7 +63,6 @@ UserSchema.pre("save", function (next) {
     user.password = passwordHash;
     next();
   });
-  // next();
 });
 
 UserSchema.methods.comparePassword = function (password, cb) {
