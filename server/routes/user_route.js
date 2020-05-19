@@ -13,23 +13,48 @@ router.get("/auth", auth, (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  console.log(req.body);
-  const user = new User(req.body);
-  user.save((err, userData) => {
-    if (err) {
-      res.send({
-        error_code: err.code,
-        error_message: err.errmsg,
-      });
-      throw err;
-    }
-    console.log(userData);
-    res.status(200).send({
-      success: true,
-      msg: "Registration successful",
-    });
+  const data = req.body;
+  console.log(data.email)
+  const user = new User({
+    username:data.username,
+    email:data.email,
+    password:data.password,
+    age:+data.age,
   });
+  user.save((err, user)=> {
+    if(err){
+      console.log(err)
+      res.send({
+        error_code:err.code,
+        error_message: err.errmsg
+      })
+    }else {
+      console.log("registration successful")
+      res.status(200).send({
+        success:true,
+        msg:"registration failed"
+      })
+    }
+  })
+
+  // const user = new User(req.body);
+  // user.save((err, userData) => {
+  //   if (err) {
+  //     res.send({
+  //       error_code: err.code,
+  //       error_message: err.errmsg,
+  //     });
+  //     // throw err;
+  //   }
+  //   console.log('userdata',userData);
+  //   res.status(200).send({
+  //     success: true, 
+  //     msg: "Registration successful",
+  //   });
+  // });
 });
+
+
 
 router.post("/login", (req, res) => {
   console.log(req.body);

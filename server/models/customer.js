@@ -5,6 +5,7 @@ const moment = require("moment");
 const config = require("../../config/key");
 
 const UserSchema = new mongoose.Schema({
+  
   username: {
     type: String,
     maxlength: 10,
@@ -25,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     type: Number,
   },
   age: {
-    type: Number,
+    type: String,
   },
   role: {
     type: Number,
