@@ -2,6 +2,15 @@ import axios from "axios";
 
 import { LOGIN_USER, REGISTER_USER, LOGOUT_USER } from "./Types";
 
+// export const loginUser = (dataToSubmit) => (dispatch) => {
+//   axios.post("http://localhost:5000/api/user/login", dataToSubmit).then((res) =>
+//     dispatch({
+//       type: LOGIN_USER,
+//       payload: res.data,
+//     })
+//   );
+// };
+
 export function loginUser(dataToSubmit) {
   const request = axios
     .post("http://localhost:5000/api/user/login", dataToSubmit)

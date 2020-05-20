@@ -28,6 +28,7 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
+
     this.props.dispatch(loginUser(dataToSubmit)).then((response) => {
       if (response.payload.success) {
         this.setState({
