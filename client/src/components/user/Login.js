@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Axios from "axios";
 import { loginUser } from "../../actions/User_actions";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
@@ -47,7 +46,7 @@ class Login extends React.Component {
   loggedInUser = () => {
     if (this.state.success) {
       if (this.state.payload.user.isAdmin) {
-        return <Redirect to="/user/admin" state={this.state} />;
+        return <Redirect to="/" state={this.state} />;
       }
       return <Redirect to="/user/profile" />;
     }
