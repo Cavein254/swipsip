@@ -4,50 +4,62 @@ const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const config = require("../../config/key");
 
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    maxlength: 10,
-    unique: 1,
+const saltRounds = 10;
+
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      maxlength: 10,
+      unique: true,
+      required: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    badge: {
+      type: String,
+    },
+    age: {
+      type: Number,
+      default: 18,
+    },
+    role: {
+      type: Number,
+      default: 0,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    token: {
+      type: String,
+    },
+    tokenExp: {
+      type: Number,
+    },
   },
-  email: {
-    type: String,
-    trim: true,
-    unique: 1,
-  },
-  password: {
-    type: String,
-  },
-  badge: {
-    type: String,
-  },
-  date_joined: {
-    type: Number,
-  },
-  role: {
-    type: Number,
-    default: 0,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  token: {
-    type: String,
-  },
-  tokenExp: {
-    type: Number,
-  },
-});
+  { timestamps: true }
+);
 
 UserSchema.pre("save", function (next) {
-  this.date_joined = Date.now();
+  const user = this;
+  user.age = +this.age;
+
+  console.log(this.password);
 
   if (!this.isModified("password")) return next();
 
-  bcrypt.hash(this.password, 10, (err, passwordHash) => {
+  bcrypt.hash(this.password, 10, function (err, passwordHash) {
     if (err) return next(err, { error: "Failed to hash password" });
-    this.password = passwordHash;
+    user.password = passwordHash;
     next();
   });
 });

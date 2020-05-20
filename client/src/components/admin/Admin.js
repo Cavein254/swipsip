@@ -14,6 +14,7 @@ import "./Admin.scss";
 
 class Admin extends React.Component {
   render() {
+    console.log(this.state);
     return (
       <div>
         <AdminHeader />

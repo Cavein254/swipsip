@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 node_modules
 /.gtm/
 yarn.lock
 *.log
 node_modules
+=======
+node_modules
+/.gtm/
+yarn-error.log
+yarn.lock
+*.log
+>>>>>>> wines

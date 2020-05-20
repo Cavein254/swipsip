@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/customer");
+const Company = require("../models/company");
 const { auth } = require("../middleware/auth");
 
 router.get("/auth", auth, (req, res) => {
@@ -12,36 +13,81 @@ router.get("/auth", auth, (req, res) => {
   });
 });
 
-router.post("/register", (req, res) => {
-  const user = new User(req.body);
-  user.save((err, userData) => {
-    if (err){
+router.post("/addcompany", auth, (req, res) => {
+  const data = req.body;
+  const company = new Company({ company_name: data.company_name });
+
+  company.save((err, company) => {
+    if (err) {
       res.send({
-        error_code:err.code,
-        error_message:err.errmsg,
-      })
-      throw err;
+        success: false,
+        error_code: err.code,
+        error_message: err.errmsg,
+      });
     }
-    console.log(userData);
     res.status(200).send({
       success: true,
-      msg: "Registration successful",
+      msg: "company successfully added",
+      Company,
     });
   });
 });
 
+router.post("/register", (req, res) => {
+  const data = req.body;
+  //.toString() fixes errors generated when submiting data
+  // mongoose  is unable to cast email:['test@test.com']
+  // to email:'test@test.com'
+  const userData = {
+    username: data.username.toString(),
+    email: data.email.toString(),
+    password: data.password.toString(),
+    age: data.age.toString(),
+    isAdmin: `${data.isAdmin == undefined ? false : true}`,
+  };
+  console.log("new data", userData);
+  const user = new User(userData);
+
+  if (+user.age < 18 || +user.age >= 100) {
+    res.send({
+      success: false,
+      msg: "Unappropriate age limit",
+    });
+  } else {
+    user.save((err, user) => {
+      if (err) {
+        let message = "[User registration failed] ";
+        res.send({
+          success: false,
+          error_code: err.code,
+          msg: message.concat(err.errmsg),
+        });
+      } else {
+        console.log("registartion success");
+        res.status(200).send({
+          success: true,
+          msg: "successfully registered user",
+        });
+      }
+    });
+  }
+});
+
 router.post("/login", (req, res) => {
+  console.log(req.body);
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user)
       return res.json({
         success: false,
         msg: "Error: no user with that email",
+        err,
       });
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
         return res.json({
           success: false,
           msg: "Error: Incorrect password",
+          err,
         });
       }
 
@@ -52,6 +98,7 @@ router.post("/login", (req, res) => {
         res.cookie("x_user_auth", user.token).status(200).json({
           success: true,
           msg: "logged In",
+          user,
         });
       });
     });
@@ -59,6 +106,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", auth, (req, res) => {
+  console.log("-----logout route-----");
   User.findOneAndUpdate(
     { _id: req.user._id },
     { token: "" },

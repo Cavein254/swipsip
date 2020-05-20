@@ -1,13 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 import Axios from "axios";
+import { loginUser } from "../../actions/User_actions";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
     email: "",
     password: "",
+    payload: "",
     errors: [],
+    success: "",
   };
 
   isFormValid = ({ email, password }) => email && password;
@@ -23,14 +28,34 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
-    Axios.post(
-      "http://localhost:5000/api/user/login",
-      dataToSubmit
-    ).then((response) => console.log(response.data));
+
+    this.props.dispatch(loginUser(dataToSubmit)).then((response) => {
+      if (response.payload.success) {
+        this.setState({
+          success: response.payload.success,
+          payload: response.payload,
+        });
+      } else {
+        this.setState({
+          success: response.payload.success,
+          errors: this.state.errors.concat(response.payload.msg),
+        });
+      }
+    });
+  };
+
+  loggedInUser = () => {
+    if (this.state.success) {
+      if (this.state.payload.user.isAdmin) {
+        return <Redirect to="/user/admin" state={this.state} />;
+      }
+      return <Redirect to="/user/profile" />;
+    }
   };
   render() {
     return (
       <div className="Container form-data">
+        {this.loggedInUser()}
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -62,11 +87,23 @@ class Login extends React.Component {
             Submit
           </Button>
         </Form>
-        <h1>{this.state.email}</h1>
-        <h1>{this.state.password}</h1>
+        <code>
+          {this.state.errors.map((err, i) => {
+            return (
+              <p>
+                <span key={i}>{err}</span>
+              </p>
+            );
+          })}
+        </code>
       </div>
     );
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+  };
+}
+export default connect(mapStateToProps)(Login);
