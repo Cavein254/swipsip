@@ -7,7 +7,7 @@ const state = store.getState();
 const user = state.User.user;
 
 export const AdminRoute = ({ component: Component, user, ...rest }) => {
-  console.log(user.success);
+  console.log("admin route", user.success);
   if (user.success) {
     return (
       <Route
@@ -15,43 +15,45 @@ export const AdminRoute = ({ component: Component, user, ...rest }) => {
         render={(props) => {
           if (user.user.isAdmin) {
             return <Component {...rest} {...props} />;
+          } else {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/unauthorized",
+                  state: {
+                    from: props.location,
+                  },
+                }}
+              />
+            );
           }
         }}
       />
     );
-  } else {
-    //   <Redirect to = {
-    //       {
-    //           pathname='/unauthorized',
-    //           state: {
-    //               from:props.location
-    //           }
-    //       }
-    //   } />
-    console.log("pass");
   }
 };
 
 export const LoggedUserRoute = ({ component: Component, user, ...rest }) => {
-  console.log(user.success);
-  if (user.success) {
-    return (
-      <Route
-        {...rest}
-        render={(props) => {
+  console.log("logged in user route", user.success);
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        if (user.success) {
           return <Component {...rest} {...props} />;
-        }}
-      />
-    );
-  } else {
-    //   <Redirect to = {
-    //       {
-    //           pathname='/unauthorized',
-    //           state: {
-    //               from:props.location
-    //           }
-    //       }
-    //   } />
-    console.log("pass");
-  }
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/unauthorized",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
 };
