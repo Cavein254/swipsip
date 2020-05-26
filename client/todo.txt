@@ -8,4 +8,6 @@ google maps intergration
 
 
 //css fixed
-shopping cart dropdown
+fix shopping cart popout
+fix bootstrap cards
+add transitions from cart to add to cart

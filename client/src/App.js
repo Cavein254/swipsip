@@ -18,6 +18,8 @@ import AddProduct from "./components/admin/AddProduct";
 import AddCompany from "./components/admin/AddCompany";
 import store from "./store";
 
+import Playground from "./components/stash";
+
 class App extends React.Component {
   render() {
     const state = store.getState();
@@ -28,6 +30,7 @@ class App extends React.Component {
         <>
           <Router>
             <Header />
+            <Route exact path="/stash" component={Playground} />
             <Route exact path="/products" component={CardList} />
             <Route exact path="/user/admin" component={Admin} />
             <Route exact path="/" component={Content} />
