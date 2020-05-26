@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Container, Col, Row, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGlassCheers,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 
 import "./top.scss";
 
@@ -24,8 +27,13 @@ const Top = () => {
               <Col sm={3}>
                 <a href="/user/register">Register</a>
               </Col>
-              <Col sm={3}>
+              {/* <Col sm={3}>
                 <a href="/user/logout">Logout</a>
+              </Col> */}
+              <Col sm={3}>
+                <span className="cart dropdown">
+                  <FontAwesomeIcon icon={faShoppingCart} />
+                </span>
               </Col>
             </div>
           </Row>

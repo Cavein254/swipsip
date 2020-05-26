@@ -3,3 +3,9 @@ fix private routing
 finish product upload
 Intergrate checkout with lipa na mpesa
 refactor code to use hooks
+google maps intergration
+
+
+
+//css fixed
+shopping cart dropdown
