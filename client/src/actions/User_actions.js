@@ -43,3 +43,24 @@ export function logoutUser() {
     payload: request,
   };
 }
+
+export function getUserData() {}
+
+// export function getProtectedThing() {
+//   return (dispatch, getState) => {
+//     // grab current state
+//     const state = getState();
+
+//     // get the JWT token out of it
+//     // (obviously depends on how your store is structured)
+//     const authToken = state.currentUser.token;
+
+//     // Pass the token to the server
+//     return fetch('/user/thing', {
+//       method: 'GET',
+//       headers: {
+//         Authorization: `Bearer ${authToken}`
+//       }
+//     }).then(res => res.json());
+//   }
+// }

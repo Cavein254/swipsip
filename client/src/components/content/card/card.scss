@@ -1,0 +1,27 @@
+.empty-cart {
+  position: absolute;
+  background-color: rgba(13, 59, 197, 0.741);
+  font-size: 0.8em;
+  outline: none;
+  border: none;
+  z-index: 100;
+  left: 80%;
+  display: inline-block;
+}
+
+.empty-cart:hover {
+  background-color: transparent;
+}
+
+.checkout {
+  position: absolute;
+  background-color: transparent;
+  font-size: 0.8em;
+  outline: none;
+  border: none;
+  left: 60%;
+}
+.checkout:hover {
+  background-color: #008000;
+  //   transition: background-color 10ms ease 0.1s;
+}

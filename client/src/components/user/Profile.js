@@ -1,7 +1,9 @@
 import React from "react";
+import store from "../../store";
 
 const Profile = (props) => {
-  console.log(props);
+  const state = store.getState();
+  console.log(state.User);
   return <div>Your profile page</div>;
 };
 
