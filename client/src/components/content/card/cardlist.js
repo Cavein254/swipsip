@@ -8,9 +8,7 @@ class CardList extends Component {
     return (
       <Container>
         <Row>
-          <Col>
-            <ProductCard />
-            <ProductCard />
+          <Col sm={3}>
             <ProductCard />
           </Col>
         </Row>

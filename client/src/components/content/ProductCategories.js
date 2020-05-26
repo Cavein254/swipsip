@@ -5,35 +5,96 @@ import {
   faBeer,
   faWineGlassAlt,
   faGlassWhiskey,
+  faBacon,
 } from "@fortawesome/free-solid-svg-icons";
+import { Products } from "../../context/DummyData";
+import SingleItem from "./singleItem";
 
-function ProductCategories() {
+const wine = [];
+const liquor = [];
+const extras = [];
+const beer = [];
+
+const ProductCategories = () => {
+  function CombineItems(collection, name, target) {
+    collection.map((item) => {
+      if (item.type == name) {
+        target.push(item);
+      }
+      return target;
+    });
+  }
+
+  CombineItems(Products, "wine", wine);
+  CombineItems(Products, "liquor", liquor);
+  CombineItems(Products, "extras", extras);
+  CombineItems(Products, "beer", beer);
+
+  console.log(wine);
+  console.log(liquor);
+  console.log(beer);
+  console.log(extras);
+
   return (
     <div>
       <Container>
         <Row>
-          <Col sm={4}>
+          <Col sm={3}>
             <h2>
               WINE <FontAwesomeIcon icon={faWineGlassAlt} />
             </h2>
-            Three Wine Products
+            {wine.map((item) => {
+              return (
+                <div key={item.id}>
+                  <SingleItem item={item} />
+                  <hr />
+                </div>
+              );
+            })}
           </Col>
-          <Col sm={4}>
+          <Col sm={3}>
             <h2>
               BEERS <FontAwesomeIcon icon={faBeer} />
             </h2>
-            Three Wine Products
+            {beer.map((item) => {
+              return (
+                <div key={item.id}>
+                  <SingleItem item={item} />
+                  <hr />
+                </div>
+              );
+            })}
           </Col>
-          <Col sm={4}>
+          <Col sm={3}>
             <h2>
               LIQUOR <FontAwesomeIcon icon={faGlassWhiskey} />
             </h2>
-            Three Wine Products
+            {liquor.map((item) => {
+              return (
+                <div key={item.id}>
+                  <SingleItem item={item} />
+                  <hr />
+                </div>
+              );
+            })}
+          </Col>
+          <Col sm={3}>
+            <h2>
+              Extras <FontAwesomeIcon icon={faBacon} />
+            </h2>
+            {extras.map((item) => {
+              return (
+                <div key={item.id}>
+                  <SingleItem item={item} />
+                  <hr />
+                </div>
+              );
+            })}
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default ProductCategories;

@@ -2,15 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
-import { Provider } from "react-redux";
-import store from "./store";
-import Reducer from "./reducer";
+import UserContextProvider from "./context/UserContext";
 
 ReactDOM.render(
-  <Provider store={store}>
+  <UserContextProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Provider>,
+  </UserContextProvider>,
   document.getElementById("root")
 );
