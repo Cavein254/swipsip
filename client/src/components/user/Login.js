@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, state } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/User_actions";
 import { Form, Button } from "react-bootstrap";
@@ -6,15 +6,16 @@ import "./user.scss";
 import { Redirect } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState({});
-  const [password, setPassword] = useState({});
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail([...email, { email }]);
-    setPassword([...password, { password }]);
+    setEmail(email);
+    setPassword(password);
   };
 
+  useEffect(() => {});
   return (
     <div className="Container form-data">
       {/* {this.loggedInUser()} */}

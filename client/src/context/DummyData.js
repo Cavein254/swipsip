@@ -9,7 +9,7 @@ export const LoginSuccess = {
   data1: {
     success: true,
     user: {
-      isAdmin: true,
+      isAdmin: false,
       email: "test@test.com",
       token: "abcd",
       createdAt: 12334,
@@ -17,7 +17,7 @@ export const LoginSuccess = {
     },
   },
   data2: {
-    success: true,
+    success: false,
     user: {
       isAdmin: false,
       email: "test1@test.com",

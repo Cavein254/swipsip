@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../unauthorized.scss";
+import "./unauthorized.scss";
 
 const Unauthorized = () => {
   return (
-    <div className="container">
+    <div className="container-403">
       <div class="gandalf">
         <div class="fireball"></div>
         <div class="skirt"></div>
@@ -19,12 +19,12 @@ const Unauthorized = () => {
         </div>
       </div>
       <div class="message">
-        <h1>403 - You Shall Not Pass</h1>
+        <h1>403 - Unauthorized Access</h1>
         <p>
-          Uh oh, Gandalf is blocking the way!
+          Something went terribly wrong!
           <br />
           Maybe you have a typo in the url? Or you meant to go to a different
-          location? Like...Hobbiton?
+          location?
         </p>
       </div>
       <p>

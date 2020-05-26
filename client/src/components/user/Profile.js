@@ -1,10 +1,20 @@
-import React from "react";
-import store from "../../store";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../../context/UserContext";
 
-const Profile = (props) => {
-  const state = store.getState();
-  console.log(state.User);
-  return <div>Your profile page</div>;
+const Profile = () => {
+  const { admin } = useContext(UserContext);
+  useEffect(() => {
+    let test = admin;
+    console.log(test);
+  }, []);
+  let home = admin ? "home" : "love";
+
+  return (
+    <>
+      <div>Admin test page</div>
+      <h1>{home}</h1>
+    </>
+  );
 };
 
 export default Profile;

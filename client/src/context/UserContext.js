@@ -1,20 +1,20 @@
 import React, { createContext, Component } from "react";
 import { LoginSuccess, Login } from "./DummyData";
 
-export const userContext = createContext();
+export const UserContext = createContext();
 
 class UserContextProvider extends Component {
   state = {
-    isSuccess: LoginSuccess.data1.success,
+    isSuccess: LoginSuccess.data2.success,
     admin: LoginSuccess.data1.user.isAdmin,
     payload: LoginSuccess.data1,
   };
 
   render() {
     return (
-      <userContext.Provider value={{ ...this.state }}>
+      <UserContext.Provider value={{ ...this.state }}>
         {this.props.children}
-      </userContext.Provider>
+      </UserContext.Provider>
     );
   }
 }
