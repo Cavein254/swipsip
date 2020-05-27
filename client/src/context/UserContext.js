@@ -1,22 +1,18 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, useState } from "react";
 import { LoginSuccess, Login } from "./DummyData";
 
 export const UserContext = createContext();
 
-class UserContextProvider extends Component {
-  state = {
-    isSuccess: LoginSuccess.data2.success,
-    admin: LoginSuccess.data1.user.isAdmin,
-    payload: LoginSuccess.data1,
-  };
-
-  render() {
-    return (
-      <UserContext.Provider value={{ ...this.state }}>
-        {this.props.children}
-      </UserContext.Provider>
-    );
-  }
-}
-
+const UserContextProvider = (props) => {
+  const [user, setUser] = useState({
+    isSucess: false,
+    admin: false,
+    payload: [],
+  });
+  return (
+    <UserContext.Provider value={{ user }}>
+      {props.children}
+    </UserContext.Provider>
+  );
+};
 export default UserContextProvider;
