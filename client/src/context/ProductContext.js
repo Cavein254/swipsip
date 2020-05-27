@@ -3,17 +3,17 @@ import { Products } from "./DummyData";
 
 export const ProductContext = createContext();
 const ProductContextProvider = (props) => {
-  const [product, setProduct] = useState([Products]);
+  const [products, setProduct] = useState({ products: Products });
 
   const addProduct = (id, type, name, price, inCart = false) => {
-    setProduct([...product, { id, type, name, price, inCart }]);
+    setProduct([...products, { id, type, name, price, inCart }]);
   };
 
   const removeProduct = (id) => {
-    setProduct(product.filter((item) => item.id !== id));
+    setProduct(products.filter((item) => item.id !== id));
   };
   return (
-    <ProductContext.Provider value={(product, addProduct, removeProduct)}>
+    <ProductContext.Provider value={{products, addProduct, removeProduct}}>
       {props.children}
     </ProductContext.Provider>
   );

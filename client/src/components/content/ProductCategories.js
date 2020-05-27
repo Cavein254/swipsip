@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,7 +7,7 @@ import {
   faGlassWhiskey,
   faBacon,
 } from "@fortawesome/free-solid-svg-icons";
-import { Products } from "../../context/DummyData";
+import { ProductContext } from "../../context/ProductContext";
 import SingleItem from "./singleItem";
 
 const wine = [];
@@ -16,6 +16,8 @@ const extras = [];
 const beer = [];
 
 const ProductCategories = () => {
+  const { products } = useContext(ProductContext);
+
   function CombineItems(collection, name, target) {
     collection.map((item) => {
       if (item.type == name) {
@@ -25,15 +27,17 @@ const ProductCategories = () => {
     });
   }
 
-  CombineItems(Products, "wine", wine);
-  CombineItems(Products, "liquor", liquor);
-  CombineItems(Products, "extras", extras);
-  CombineItems(Products, "beer", beer);
+  // CombineItems(product, "wine", wine);
+  // CombineItems(product, "liquor", liquor);
+  // CombineItems(product, "extras", extras);
+  // CombineItems(product, "beer", beer);
 
-  console.log(wine);
-  console.log(liquor);
-  console.log(beer);
-  console.log(extras);
+  // console.log(wine);
+  // console.log(liquor);
+  // console.log(beer);
+  // console.log(extras);
+  console.log("------------");
+  console.log(products);
 
   return (
     <div>

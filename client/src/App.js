@@ -19,13 +19,14 @@ import AddProduct from "./components/admin/AddProduct";
 import AddCompany from "./components/admin/AddCompany";
 
 import Playground from "./components/stash";
-
-import UserContextProvider from "./context/UserContext";
 import { UserContext } from "./context/UserContext";
 
 const App = () => {
-  const { admin, isSuccess } = useContext(UserContext);
-  console.log(admin);
+  const { isSuccess, admin } = useContext(UserContext);
+  console.log("on is Success", isSuccess);
+  console.log("is admin", admin);
+  // const isSuccess = false;
+  // const admin = false;
   return (
     <div className="App">
       <>
