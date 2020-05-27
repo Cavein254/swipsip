@@ -11,34 +11,34 @@ const Footer = () => {
         <Container>
           <Row>
             <Col sm={2} className="item">
-              <h4>VISIT US</h4>
+              <h5>VISIT US</h5>
               <p>Switsip Wine & Spirits</p>
               <p>Kasarani Seasons</p>
               <p>info@switsip.co.ke</p>
             </Col>
             <Col sm={2} className="item">
-              <h4>HOURS OF OPERATIONS</h4>
+              <h5>HOURS OF OPERATIONS</h5>
               <p>Mon-Sun</p>
               <p>8:00 am - 11:00pm</p>
             </Col>
             <Col sm={2} className="item">
-              <h4>COMPANY</h4>
+              <h5>COMPANY</h5>
               <p>
                 <a href="#">About Us</a>
               </p>
             </Col>
             <Col sm={2} className="item">
-              <h4>SOCIAL</h4>
+              <h5>SOCIAL</h5>
               <p>
-                <FontAwesomeIcon icon={faFacebook} /> Twitter
+                <FontAwesomeIcon icon={faFacebook} /> Facebook
               </p>
               <p></p>
             </Col>
             <Col sm={2} className="item">
-              <h4>LEGAL</h4>
+              <h5>LEGAL</h5>
             </Col>
             <Col sm={2} className="item">
-              <h4>BLOG</h4>
+              <h5>BLOG</h5>
             </Col>
           </Row>
         </Container>

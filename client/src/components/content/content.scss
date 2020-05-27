@@ -10,5 +10,7 @@
 
 .caro-text {
   background-color: rgba(0, 0, 0, 0.8);
-  font-size: 1.3em;
+  & .text {
+  font-size: 0.7em;
+  }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,7 +7,7 @@ import {
   faGlassWhiskey,
   faBacon,
 } from "@fortawesome/free-solid-svg-icons";
-import { Products } from "../../context/DummyData";
+import { ProductContext } from "../../context/ProductContext";
 import SingleItem from "./singleItem";
 
 const wine = [];
@@ -16,33 +16,34 @@ const extras = [];
 const beer = [];
 
 const ProductCategories = () => {
+  const { products } = useContext(ProductContext);
+  const allProducts = products.products
+
+
   function CombineItems(collection, name, target) {
     collection.map((item) => {
       if (item.type == name) {
-        target.push(item);
+         target.push(item);
       }
-      return target;
     });
   }
 
-  CombineItems(Products, "wine", wine);
-  CombineItems(Products, "liquor", liquor);
-  CombineItems(Products, "extras", extras);
-  CombineItems(Products, "beer", beer);
+  useEffect(()=> {
+  CombineItems(allProducts, 'wine', wine)
+  CombineItems(allProducts, 'liquor', liquor)
+  CombineItems(allProducts, 'extras', extras)
+  CombineItems(allProducts, 'beer', beer)
+  }, [])
 
-  console.log(wine);
-  console.log(liquor);
-  console.log(beer);
-  console.log(extras);
-
+  
   return (
     <div>
       <Container>
         <Row>
           <Col sm={3}>
-            <h2>
+            <h4>
               WINE <FontAwesomeIcon icon={faWineGlassAlt} />
-            </h2>
+            </h4>
             {wine.map((item) => {
               return (
                 <div key={item.id}>
@@ -53,9 +54,9 @@ const ProductCategories = () => {
             })}
           </Col>
           <Col sm={3}>
-            <h2>
+            <h4>
               BEERS <FontAwesomeIcon icon={faBeer} />
-            </h2>
+            </h4>
             {beer.map((item) => {
               return (
                 <div key={item.id}>
@@ -66,9 +67,9 @@ const ProductCategories = () => {
             })}
           </Col>
           <Col sm={3}>
-            <h2>
+            <h4>
               LIQUOR <FontAwesomeIcon icon={faGlassWhiskey} />
-            </h2>
+            </h4>
             {liquor.map((item) => {
               return (
                 <div key={item.id}>
@@ -79,9 +80,9 @@ const ProductCategories = () => {
             })}
           </Col>
           <Col sm={3}>
-            <h2>
+            <h4>
               Extras <FontAwesomeIcon icon={faBacon} />
-            </h2>
+            </h4>
             {extras.map((item) => {
               return (
                 <div key={item.id}>

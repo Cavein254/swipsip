@@ -1,6 +1,4 @@
 import React, { useState, useEffect, state } from "react";
-import { connect } from "react-redux";
-import { loginUser } from "../../actions/User_actions";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
 import { Redirect } from "react-router-dom";
