@@ -29,16 +29,11 @@ const ProductCategories = () => {
   }
 
   useEffect(()=> {
-    CombineItems(allProducts, 'wine', wine)
+  CombineItems(allProducts, 'wine', wine)
   CombineItems(allProducts, 'liquor', liquor)
   CombineItems(allProducts, 'extras', extras)
   CombineItems(allProducts, 'beer', beer)
   }, [])
-
-  
-  // console.log(allProducts)
-  console.log(beer)
-  console.log(wine)
 
   
   return (
