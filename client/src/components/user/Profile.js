@@ -1,19 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
 
 const Profile = () => {
-  const { admin } = useContext(UserContext);
-  useEffect(() => {
-    let test = admin;
-    console.log(test);
-  }, []);
-  let home = admin ? "home" : "love";
-
   return (
-    <>
-      <div>Admin test page</div>
-      <h1>{home}</h1>
-    </>
+    <div>
+      <h2>Profile</h2>
+    </div>
   );
 };
 

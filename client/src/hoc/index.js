@@ -1,8 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 
-export const AdminUser = ({ component: Component, user, admin, ...rest }) => {
-  console.log("logged in user route", admin);
+export const AdminUser = ({
+  component: Component,
+  user,
+  admin,
+  isSuccess,
+  ...rest
+}) => {
+  console.log("Admin user ", admin);
   return (
     <Route
       {...rest}
@@ -26,7 +32,12 @@ export const AdminUser = ({ component: Component, user, admin, ...rest }) => {
   );
 };
 
-export const LoggedIn = ({ component: Component, user, isSuccess, ...rest }) => {
+export const LoggedIn = ({
+  component: Component,
+  user,
+  isSuccess,
+  ...rest
+}) => {
   console.log("logged in user route", isSuccess);
   return (
     <Route

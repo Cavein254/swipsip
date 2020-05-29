@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import { UserContext } from "../../context/UserContext";
 

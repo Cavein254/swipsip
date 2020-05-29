@@ -22,11 +22,10 @@ import Playground from "./components/stash";
 import { UserContext } from "./context/UserContext";
 
 const App = () => {
-  const { isSuccess, admin } = useContext(UserContext);
-  console.log("on is Success", isSuccess);
-  console.log("is admin", admin);
-  // const isSuccess = false;
-  // const admin = false;
+  const { state } = useContext(UserContext);
+  const isSuccess = state.isSuccess;
+  const admin = state.isAdmin;
+  console.log(isSuccess, admin);
   return (
     <div className="App">
       <>
@@ -41,7 +40,7 @@ const App = () => {
 
           <LoggedIn
             exact
-            path="/profile"
+            path="/user/profile"
             component={Profile}
             isSuccess={isSuccess}
           />
