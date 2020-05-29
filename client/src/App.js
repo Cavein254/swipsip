@@ -13,6 +13,7 @@ import CardList from "./components/content/card/cardlist";
 import Unauthorized from "./components/user/unauthorized";
 
 import Admin from "./components/admin/Admin";
+import ViewUsers from "./components/admin/ViewUsers";
 
 import AddUser from "./components/admin/AddUser";
 import AddProduct from "./components/admin/AddProduct";
@@ -52,6 +53,8 @@ const App = () => {
             path="/user/admin/addcompany"
             component={AddCompany}
           />
+
+          <AdminUser exact path="/user/admin/viewusers" component={ViewUsers} />
         </Router>
         <Footer />
       </>

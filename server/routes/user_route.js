@@ -35,18 +35,19 @@ router.post("/admin/addcompany", auth, (req, res) => {
   });
 });
 
-router.get("/admin/viewallusers", auth, (req, res) => {
+router.post("/admin/viewusers", auth, (req, res) => {
   User.find({}, (err, doc) => {
     if (err) {
       res.send({
         success: false,
         msg: err,
       });
-      res.send({
-        success: true,
-        payload: doc,
-      });
     }
+    console.log(doc);
+    res.send({
+      success: true,
+      payload: doc,
+    });
   });
 });
 

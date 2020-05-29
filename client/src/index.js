@@ -4,15 +4,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import ProductContextProvider from "./context/ProductContext";
 import UserContextProvider from "./context/UserContext";
-import AdminContextProvider from "./context/AdminContext";
+import {
+  AdminContextProvider,
+  ViewUsersContextProvider,
+} from "./context/AdminContext";
 
 ReactDOM.render(
   <ProductContextProvider>
     <UserContextProvider>
       <AdminContextProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <ViewUsersContextProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </ViewUsersContextProvider>
       </AdminContextProvider>
     </UserContextProvider>
   </ProductContextProvider>,

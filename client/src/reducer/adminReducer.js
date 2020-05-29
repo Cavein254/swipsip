@@ -21,7 +21,11 @@ export const adminReducer = (state, action) => {
     case "VIEW_ORDERS":
       return [];
     case "VIEW_USERS":
-      return [];
+      return {
+        ...state,
+        isSuccess: action.payload.success,
+        payload: action.payload.users,
+      };
     default:
       return state;
   }
