@@ -40,7 +40,7 @@ const Login = () => {
       .then((res) => res.data)
       .then((data) => {
         if (data.success) {
-          history.push("/user/profile");
+          history.push("/");
           dispatch({
             type: "LOGIN_USER",
             payload: data,
@@ -101,56 +101,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// class Login extends React.Component {
-//   state = {
-//     email: "",
-//     password: "",
-//     payload: "",
-//     errors: [],
-//     success: "",
-//   };
-
-//   isFormValid = ({ email, password }) => email && password;
-
-//   handleOnChange = (e) => {
-//     this.setState({
-//       [e.target.name]: [e.target.value],
-//     });
-//   };
-//   handleOnSubmit = (e) => {
-//     e.preventDefault();
-//     let dataToSubmit = {
-//       email: this.state.email,
-//       password: this.state.password,
-//     };
-
-//     this.props.dispatch(loginUser(dataToSubmit)).then((response) => {
-//       if (response.payload.success) {
-//         this.setState({
-//           success: response.payload.success,
-//           payload: response.payload,
-//         });
-//       } else {
-//         this.setState({
-//           success: response.payload.success,
-//           errors: this.state.errors.concat(response.payload.msg),
-//         });
-//       }
-//     });
-//   };
-
-//   loggedInUser = () => {
-//     if (this.state.success) {
-//       if (this.state.payload.user.isAdmin) {
-//         return <Redirect to="/" state={this.state} />;
-//       }
-//       return <Redirect to="/user/profile" />;
-//     }
-//   };
-//   render() {
-
-//   }
-// }
-
-// export default Login;

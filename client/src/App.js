@@ -20,11 +20,14 @@ import AddCompany from "./components/admin/AddCompany";
 
 import Playground from "./components/stash";
 import { UserContext } from "./context/UserContext";
+import RegisterUserContextProvider from "./context/RegisterUserContext";
 
 const App = () => {
-  const { state } = useContext(UserContext);
-  const isSuccess = state.isSuccess;
-  const admin = state.isAdmin;
+  const { loggedUser } = useContext(UserContext);
+  // const isSuccess = loggedUser.isSuccess;
+  // const admin = loggedUser.isAdmin;
+  const isSuccess = true;
+  const admin = true;
   console.log(isSuccess, admin);
   return (
     <div className="App">
@@ -33,7 +36,9 @@ const App = () => {
           <Header />
           <Route exact path="/" component={Content} />
           <Route exact path="/user/login" component={Login} />
-          <Route exact path="/user/register" component={Register} />
+          <RegisterUserContextProvider>
+            <Route exact path="/user/register" component={Register} />
+          </RegisterUserContextProvider>
           <Route exact path="/stash" component={Playground} />
           <Route exact path="/products" component={CardList} />
           <Route exact path="/unauthorized" component={Unauthorized} />

@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import { LoginSuccess, Login } from "./DummyData";
 import { UserReducer } from "../reducer/userReducer";
 
 export const UserContext = createContext();
@@ -11,9 +10,9 @@ const initialState = {
 };
 
 const UserContextProvider = (props) => {
-  const [state, dispatch] = useReducer(UserReducer, initialState);
+  const [loggedUser, dispatch] = useReducer(UserReducer, initialState);
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
+    <UserContext.Provider value={{ loggedUser, dispatch }}>
       {props.children}
     </UserContext.Provider>
   );
