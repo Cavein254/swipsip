@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import { adminFun, isSuccessFun } from "../config/config";
+import { switSipFun } from "../config/config";
 
 export const AdminUser = ({
   component: Component,
@@ -8,8 +8,8 @@ export const AdminUser = ({
   isSuccess,
   ...rest
 }) => {
-  const admin = adminFun();
-  console.log("AdminUser user ----", admin);
+  const admin = switSipFun().admin;
+  console.log(admin);
   return (
     <Route
       {...rest}
@@ -34,8 +34,8 @@ export const AdminUser = ({
 };
 
 export const LoggedIn = ({ component: Component, user, ...rest }) => {
-  const isSuccess = isSuccessFun();
-  console.log("logged in user route", isSuccess);
+  const isSuccess = switSipFun().isSuccess;
+  console.log(isSuccess);
   return (
     <Route
       {...rest}

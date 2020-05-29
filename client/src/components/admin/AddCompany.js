@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 import Axios from "axios";
-import { tokenFun } from "../../config/config";
+import { switSipFun } from "../../config/config";
+import { useHistory } from "react-router-dom";
 
 const AddCompany = () => {
+  const history = useHistory();
   const { dispatch } = useContext(UserContext);
   const initialState = {
     company: "",
@@ -19,8 +21,13 @@ const AddCompany = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("clicked");
-    const data = { conpany_name: company.company };
-    const token = tokenFun();
+    console.log(switSipFun().id);
+    const data = {
+      company_name: company.company,
+      id: switSipFun().id,
+      user_token: switSipFun().token,
+    };
+    const token = switSipFun().token;
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -33,6 +40,7 @@ const AddCompany = () => {
       .then((data) => {
         if (data.isAuth) {
           console.log(data);
+          history.push("/user/admin/viewcompanies");
           dispatch({
             type: "ADD_COMPANY",
             payload: data,

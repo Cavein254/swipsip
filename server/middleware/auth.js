@@ -1,18 +1,19 @@
 const User = require("../models/customer");
 
 const auth = (req, res, next) => {
-  let token = req.headers.authorization;
-  console.log(req.headers.authorization);
-  User.findByToken(token, (err, user) => {
-    if (err) throw err;
-    if (!user)
-      return res.json({
-        isAuth: false,
-        msg: "Authentication failure",
+  const id = req.body.id;
+  const user_token = req.body.user_token;
+  User.findById(id, (err, doc) => {
+    if (err) {
+      res.send({
+        success: false,
+        msg: "expired token",
       });
-    req.token = token;
-    req.user = user;
-    next();
+    }
+    if (doc.token === user_token) {
+      console.log("pass");
+      next();
+    }
   });
 };
 

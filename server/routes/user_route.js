@@ -20,16 +20,17 @@ router.post("/admin/addcompany", auth, (req, res) => {
 
   company.save((err, company) => {
     if (err) {
-      res.send({
+      let message = "[Company registration failed] ";
+      return res.send({
         success: false,
         error_code: err.code,
-        error_message: err.errmsg,
+        msg: message.concat(err.errmsg),
       });
     }
-    res.status(200).send({
+    console.log("registartion success");
+    return res.status(200).send({
       success: true,
-      msg: "company successfully added",
-      Company,
+      msg: "successfully registered company",
     });
   });
 });
