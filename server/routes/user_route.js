@@ -34,7 +34,20 @@ router.post("/admin/addcompany", auth, (req, res) => {
   });
 });
 
-router.get("/admin/viewallusers", auth, (req, res) => {});
+router.get("/admin/viewallusers", auth, (req, res) => {
+  User.find({}, (err, doc) => {
+    if (err) {
+      res.send({
+        success: false,
+        msg: err,
+      });
+      res.send({
+        success: true,
+        payload: doc,
+      });
+    }
+  });
+});
 
 router.post("/register", (req, res) => {
   const data = req.body;

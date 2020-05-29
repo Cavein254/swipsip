@@ -1,14 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import { adminFun, isSuccessFun } from "../config/config";
 
 export const AdminUser = ({
   component: Component,
   user,
-  admin,
   isSuccess,
   ...rest
 }) => {
-  console.log("Admin user ", admin);
+  const admin = adminFun();
+  console.log("AdminUser user ----", admin);
   return (
     <Route
       {...rest}
@@ -32,12 +33,8 @@ export const AdminUser = ({
   );
 };
 
-export const LoggedIn = ({
-  component: Component,
-  user,
-  isSuccess,
-  ...rest
-}) => {
+export const LoggedIn = ({ component: Component, user, ...rest }) => {
+  const isSuccess = isSuccessFun();
   console.log("logged in user route", isSuccess);
   return (
     <Route

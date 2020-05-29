@@ -21,8 +21,11 @@ const AddCompany = () => {
     console.log("clicked");
     const data = { conpany_name: company.company };
     const token = tokenFun();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
-    Axios.post("http://localhost:5000/api/user/addcompany", data, token)
+    Axios.post("http://localhost:5000/api/user/admin/addcompany", data, config)
       .then((res) => {
         console.log(res.data);
         return res.data;

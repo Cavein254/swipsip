@@ -3,6 +3,15 @@ import { RegisterUserContext } from "../context/RegisterUserContext";
 export const UserReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_USER":
+      localStorage.setItem(
+        "swipsip",
+        JSON.stringify({
+          isSuccess: action.payload.isSuccess,
+          admin: action.payload.user.isAdmin,
+          token: action.payload.user.token,
+          id: action.payload.user._id,
+        })
+      );
       localStorage.setItem("isSuccess", JSON.stringify(action.payload.success));
       localStorage.setItem(
         "admin",
@@ -15,6 +24,7 @@ export const UserReducer = (state, action) => {
         admin: action.payload.user.isAdmin,
         token: action.payload.user.token,
         user: action.payload.user,
+        id: action.payload.user._id,
       };
     case "REGISTER_USER":
       return {
