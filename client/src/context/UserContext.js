@@ -1,23 +1,19 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useReducer } from "react";
 import { LoginSuccess, Login } from "./DummyData";
+import { UserReducer } from "../reducer/userReducer";
 
 export const UserContext = createContext();
 
+const initialState = {
+  isSuccess: false,
+  admin: false,
+  payload: [],
+};
+
 const UserContextProvider = (props) => {
-  const [user, setUser] = useState({
-    isSucess: false,
-    admin: false,
-    payload: [],
-  });
-  const loggedInUser = ({ isSuccess, admin, payload }) => {
-    setUser({ isSuccess, admin, payload });
-  };
-  // loggedInUser(LoginSuccess);
-  useEffect(() => {
-    loggedInUser(LoginSuccess);
-  }, []);
+  const [state, dispatch] = useReducer(UserReducer, initialState);
   return (
-    <UserContext.Provider value={{ user }}>
+    <UserContext.Provider value={{ state, dispatch }}>
       {props.children}
     </UserContext.Provider>
   );

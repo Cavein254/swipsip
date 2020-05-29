@@ -1,22 +1,67 @@
-import React, { useState, useEffect, state } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./user.scss";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
+import Axios from "axios";
+import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const history = useHistory();
+  const { dispatch } = useContext(UserContext);
+  const initialState = {
+    email: "",
+    password: "",
+    errors: "",
+    loading: false,
+  };
+  const [userData, setUserData] = useState(initialState);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setEmail(email);
-    setPassword(password);
+  const handleOnChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: [e.target.value],
+    });
   };
 
-  useEffect(() => {});
+  const handleSubmit = (e) => {
+    console.log("handle submit");
+    e.preventDefault();
+    setUserData({
+      ...userData,
+      loading: true,
+    });
+
+    const loginData = {
+      email: userData.email,
+      password: userData.password,
+    };
+
+    Axios.post("http://localhost:5000/api/user/login", loginData)
+      .then((res) => res.data)
+      .then((data) => {
+        if (data.success) {
+          history.push("/user/profile");
+          dispatch({
+            type: "LOGIN_USER",
+            payload: data,
+          });
+        } else {
+          setUserData({
+            ...userData,
+            errors: data.msg,
+          });
+        }
+      })
+      .catch((err) => {
+        setUserData({
+          ...userData,
+          errors: err,
+        });
+      });
+  };
+
   return (
     <div className="Container form-data">
-      {/* {this.loggedInUser()} */}
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -24,8 +69,8 @@ const Login = () => {
             type="email"
             placeholder="Enter email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={userData.email}
+            onChange={handleOnChange}
             required
           />
           <Form.Text>We'll never share your email with anyone else.</Form.Text>
@@ -37,8 +82,8 @@ const Login = () => {
             type="password"
             placeholder="Enter Password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={userData.password}
+            onChange={handleOnChange}
             required
           />
         </Form.Group>
@@ -46,7 +91,11 @@ const Login = () => {
           Submit
         </Button>
       </Form>
-      <code></code>
+      <div>
+        <code>
+          {userData.errors ? <p> {userData.errors.toString()}</p> : ""}
+        </code>
+      </div>
     </div>
   );
 };
