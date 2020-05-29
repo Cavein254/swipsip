@@ -24,7 +24,6 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log("handle submit");
     e.preventDefault();
     setUserData({
       ...userData,
@@ -40,6 +39,7 @@ const Login = () => {
       .then((res) => res.data)
       .then((data) => {
         if (data.success) {
+          console.log(data);
           history.push("/");
           dispatch({
             type: "LOGIN_USER",

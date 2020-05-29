@@ -15,6 +15,7 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/addcompany", auth, (req, res) => {
   const data = req.body;
+  console.log("adding company", data);
   const company = new Company({ company_name: data.company_name });
 
   company.save((err, company) => {
@@ -35,6 +36,7 @@ router.post("/addcompany", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const data = req.body;
+  console.log(data);
   //.toString() fixes errors generated when submiting data
   // mongoose  is unable to cast email:['test@test.com']
   // to email:'test@test.com'

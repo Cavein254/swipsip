@@ -19,24 +19,3 @@ export const addProductReducer = (state, action) => {
       return state;
   }
 };
-
-export const adminReducer = (state, action) => {
-  switch (action.type) {
-    case "ADMIN_ADD_USER":
-      return [];
-    case "ADD_PRODUCT":
-      return [];
-    case "ADD_COMPANY":
-      return [];
-    case "REMOVE_PRODUCT":
-      return [];
-    case "VIEW_TRANSACTIONS":
-      return [];
-    case "VIEW_ORDERS":
-      return [];
-    case "VIEW_USERS":
-      return [];
-    default:
-      return state;
-  }
-};

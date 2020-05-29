@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { AdminUser, LoggedIn } from "./hoc";
+import { tokenFun, adminFun, isSuccessFun } from "./config/config.js";
 import Header from "./components/header/header/Header";
 import Content from "./components/content/Content";
 import Footer from "./components/footer/Footer";
@@ -21,14 +22,13 @@ import AddCompany from "./components/admin/AddCompany";
 import Playground from "./components/stash";
 import { UserContext } from "./context/UserContext";
 import RegisterUserContextProvider from "./context/RegisterUserContext";
+import AdminContextProvider from "./context/AdminContext";
 
+const admin = adminFun();
+const token = tokenFun();
+const isSuccess = isSuccessFun();
+console.log(admin, token, isSuccess);
 const App = () => {
-  const { loggedUser } = useContext(UserContext);
-  // const isSuccess = loggedUser.isSuccess;
-  // const admin = loggedUser.isAdmin;
-  const isSuccess = true;
-  const admin = true;
-  console.log(isSuccess, admin);
   return (
     <div className="App">
       <>
@@ -56,26 +56,28 @@ const App = () => {
             isSuccess={isSuccess}
           />
 
-          <AdminUser exact path="/user/admin" component={Admin} admin={admin} />
+          <AdminContextProvider>
+            <AdminUser exact path="/user/admin" component={Admin} />
 
-          <AdminUser
-            exact
-            path="/user/admin/adduser"
-            component={AddUser}
-            admin={admin}
-          />
-          <AdminUser
-            exact
-            path="/user/admin/addproduct"
-            component={AddProduct}
-            admin={admin}
-          />
-          <AdminUser
-            exact
-            path="/user/admin/addcompany"
-            component={AddCompany}
-            admin={admin}
-          />
+            <AdminUser
+              exact
+              path="/user/admin/adduser"
+              component={AddUser}
+              admin={admin}
+            />
+            <AdminUser
+              exact
+              path="/user/admin/addproduct"
+              component={AddProduct}
+              admin={admin}
+            />
+            <AdminUser
+              exact
+              path="/user/admin/addcompany"
+              component={AddCompany}
+              admin={admin}
+            />
+          </AdminContextProvider>
         </Router>
         <Footer />
       </>

@@ -8,12 +8,13 @@ export const UserReducer = (state, action) => {
         "admin",
         JSON.stringify(action.payload.user.isAdmin)
       );
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.user.token));
       return {
         ...state,
         isSuccess: action.payload.success,
         admin: action.payload.user.isAdmin,
-        payload: action.payload.user,
+        token: action.payload.user.token,
+        user: action.payload.user,
       };
     case "REGISTER_USER":
       return {
