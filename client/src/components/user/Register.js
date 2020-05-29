@@ -15,6 +15,7 @@ const Register = () => {
     age: "",
     password: "",
     password1: "",
+    isAdmin: false,
     errors: "",
     loading: false,
   };
@@ -41,6 +42,7 @@ const Register = () => {
       age: userData.age,
       password: userData.password,
       password1: userData.password1,
+      admin: false,
     };
 
     Axios.post("http://localhost:5000/api/user/register", registerData)

@@ -13,7 +13,7 @@ router.get("/auth", auth, (req, res) => {
   });
 });
 
-router.post("/addcompany", auth, (req, res) => {
+router.post("/admin/addcompany", auth, (req, res) => {
   const data = req.body;
   console.log("adding company", data);
   const company = new Company({ company_name: data.company_name });
@@ -34,6 +34,8 @@ router.post("/addcompany", auth, (req, res) => {
   });
 });
 
+router.get("/admin/viewallusers", auth, (req, res) => {});
+
 router.post("/register", (req, res) => {
   const data = req.body;
   console.log(data);
@@ -45,9 +47,8 @@ router.post("/register", (req, res) => {
     email: data.email.toString(),
     password: data.password.toString(),
     age: data.age.toString(),
-    isAdmin: `${data.isAdmin == undefined ? false : true}`,
+    isAdmin: data.admin,
   };
-  console.log("new data", userData);
   const user = new User(userData);
 
   if (+user.age < 18 || +user.age >= 100) {

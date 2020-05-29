@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 import Axios from "axios";
+import { tokenFun } from "../../config/config";
 
 const AddCompany = () => {
   const { dispatch } = useContext(UserContext);
@@ -19,8 +20,9 @@ const AddCompany = () => {
     e.preventDefault();
     console.log("clicked");
     const data = { conpany_name: company.company };
+    const token = tokenFun();
 
-    Axios.post("http://localhost:5000/api/user/addcompany", data)
+    Axios.post("http://localhost:5000/api/user/addcompany", data, token)
       .then((res) => {
         console.log(res.data);
         return res.data;
