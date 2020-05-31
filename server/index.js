@@ -17,30 +17,43 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(cors());
-app.use(fileUpload());
 app.use(express.json());
 app.use(cookieParser());
+app.use("Uploads", express.static("uploads"));
+
+app.use(fileUpload());
 
 app.use("/api/user", require("./routes/user_route"));
 app.use("/api/user/payments", require("./hooks/payment/pay"));
-app.use("Uploads", express.static("uploads"));
 
 app.post("/Uploads", (req, res) => {
+  console.log(`${path.resolve(__dirname, "..")}`);
   if (req.files === null) {
     return res.status(400).json({ msg: "No file uploaded" });
   }
 
   const file = req.files.file;
-  file.mv(`${__dirname}/client/public/uploads/product/${file.name}`, (err) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send();
+  console.log("_____________________________________");
+
+  file.mv(
+    `${path.resolve(__dirname, "..")}/client/public/uploads/product/${
+      file.name
+    }`,
+    (err) => {
+      if (err) {
+        return res.status(500).send({
+          success: false,
+          msg: "No image uploaded",
+        });
+      }
+      const data = {
+        fileName: file.name,
+        filePath: `/uploads/product/${file.name}`,
+      };
+      console.log(data);
+      res.send(data);
     }
-    res.json({
-      fileName: file.name,
-      filePath: "/uploads/product/${file.name}",
-    });
-  });
+  );
 });
 
 if (process.env.NODE_ENV === "production") {
