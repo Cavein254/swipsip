@@ -12,8 +12,7 @@
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
     "frontend": "npm start --prefix client",
-    "dev": "concurrently \"yarn run backend\" \"npm start --prefix client\"",
-    "heroku-postbuild": "yarn install && cd client && yarn install && npm run build"
+    "dev": "concurrently \"yarn run backend\" \"npm start --prefix client\""
   },
   "author": "John Muthua",
   "license": "ISC",
