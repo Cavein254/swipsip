@@ -1,1 +1,1 @@
-web: yarn run backend
+web: npm run backend
