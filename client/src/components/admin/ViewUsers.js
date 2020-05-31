@@ -20,7 +20,7 @@ const ViewUsers = () => {
       user_token: switSipFun().token,
       id: switSipFun().id,
     };
-    Axios.post("http://localhost:5000/api/user/admin/viewusers", dataToSubmit)
+    Axios.post("/api/user/admin/viewusers", dataToSubmit)
       .then((res) => res.data)
       .then((data) => {
         console.log("---------");

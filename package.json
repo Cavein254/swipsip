@@ -10,8 +10,8 @@
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
-    "frontend": "npm run start --prefix client",
-    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+    "frontend": "npm start --prefix client",
+    "dev": "concurrently \"npm run backend\" \"npm start --prefix client\""
   },
   "author": "John Muthua",
   "license": "ISC",
@@ -22,7 +22,7 @@
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "express-fileuploader": "^0.0.7",
+    "express-fileupload": "^1.1.7-alpha.3",
     "global": "^4.4.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "prettier": "^2.0.5"
   }
 }

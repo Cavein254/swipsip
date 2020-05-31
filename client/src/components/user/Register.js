@@ -45,7 +45,7 @@ const Register = () => {
       admin: false,
     };
 
-    Axios.post("http://localhost:5000/api/user/register", registerData)
+    Axios.post("/api/user/register", registerData)
       .then((res) => res.data)
       .then((data) => {
         if (data.success) {

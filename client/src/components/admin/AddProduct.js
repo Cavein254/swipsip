@@ -6,6 +6,19 @@ const AddProduct = () => {
     <div>
       <Form>
         <h2 ClassName="formheader">Add Product</h2>
+        <form>
+          <div className="custom-file">
+            <input type="file" className="custom-file-input" id="customFile" />
+            <label className="custom-file-label" htmlFor="customFile">
+              Choose file
+            </label>
+          </div>
+          <input
+            type="submit"
+            value="Upload"
+            className="btn btn-primary btn-block mt-4"
+          />
+        </form>
 
         <Form.Group controlId="formBasicText">
           <Form.Label>Name</Form.Label>

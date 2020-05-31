@@ -32,7 +32,7 @@ const AddCompany = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    Axios.post("http://localhost:5000/api/user/admin/addcompany", data, config)
+    Axios.post("/api/user/admin/addcompany", data, config)
       .then((res) => {
         console.log(res.data);
         return res.data;

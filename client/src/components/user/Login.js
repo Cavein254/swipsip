@@ -35,7 +35,7 @@ const Login = () => {
       password: userData.password,
     };
 
-    Axios.post("http://localhost:5000/api/user/login", loginData)
+    Axios.post("/api/user/login", loginData)
       .then((res) => res.data)
       .then((data) => {
         if (data.success) {
