@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const cors = require("cors");
+const publicPath = path.join(__dirname, "..", "public");
 
 const config = require("../config/key");
 
@@ -19,12 +20,16 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use("Uploads", express.static("uploads"));
+app.use(express.static(publicPath));
 
 app.use(fileUpload());
 
 app.use("/api/user", require("./routes/user_route"));
 app.use("/api/user/payments", require("./hooks/payment/pay"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
 
 app.post("/Uploads", (req, res) => {
   console.log(`${path.resolve(__dirname, "..")}`);
