@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "description": "react boiler plate",
   "main": "index.js",
-  "engine": {
-    "node": "10.16.0",
-    "yarn": "1.22.4"
+  "engines": {
+    "node": "10.19.0",
+    "yarn": "1.22.4",
+    "npm": "6.14.4"
   },
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
-    "frontend": "npm start --prefix client",
-    "dev": "concurrently \"npm run backend\" \"npm start --prefix client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "frontend": "yarn run start --prefix client",
+    "dev": "concurrently \"yarn run backend\" \"yarn run start --prefix client\"",
+    "heroku-postbuild": "yarn install && cd client && npm install && npm run build"
   },
   "author": "John Muthua",
   "license": "ISC",
