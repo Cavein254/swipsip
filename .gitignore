@@ -10,4 +10,6 @@ node_modules
 yarn-error.log
 yarn.lock
 *.log
+Uploads
+/client/public/uploads
 >>>>>>> wines
