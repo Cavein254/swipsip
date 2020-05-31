@@ -22,8 +22,14 @@ app.use(cookieParser());
 
 app.use(fileUpload());
 
+app.use(express.static(path.join(__dirname, "build")));
+
 app.use("/api/user", require("./routes/user_route"));
 app.use("/api/user/payments", require("./hooks/payment/pay"));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.post("/Uploads", (req, res) => {
   console.log(`${path.resolve(__dirname, "..")}`);
