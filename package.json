@@ -17,8 +17,9 @@
   "author": "John Muthua",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
+    "concurrently": "^7.3.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -32,6 +33,7 @@
     "multer": "^1.4.2",
     "ngrok": "^3.2.7",
     "node": "^14.0.0",
+    "nodemon": "^2.0.19",
     "parse-json": "^5.0.0",
     "request": "^2.88.2",
     "requests": "^0.3.0",
@@ -39,8 +41,6 @@
     "supports-color": "^7.1.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "nodemon": "^1.19.1",
     "prettier": "^2.0.5"
   }
 }
